@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <title>UNIT3D Documentation</title>
+
+    <!-- Styles -->
+    <link href="assets/css/page.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+    <link rel="icon" href="assets/img/favicon.png">
+</head>
+
+<body>
+
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-stick-dark" data-navbar="sticky">
+    <div class="container">
+
+        <div class="navbar-left">
+            <button class="navbar-toggler" type="button">&#9776;</button>
+            <a class="navbar-brand" href="index.html">
+                <h2 style="color: black; font-weight: 800;">UNIT3D</h2>
+            </a>
+        </div>
+
+        <section class="navbar-mobile">
+            <span class="navbar-divider d-mobile-none"></span>
+
+            <ul class="nav nav-navbar">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">UNIT3D <span class="arrow"></span></a>
+                    <nav class="nav">
+                        <a class="nav-link" href="#">Introduction</a>
+                        <a class="nav-link" href="dir_structure.html">Directory Schema</a>
+                        <a class="nav-link" href="#">Database Schema</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="nav-link" href="#">Articles System</a>
+                        <a class="nav-link" href="#">BON System</a>
+                        <a class="nav-link" href="#">Chat System</a>
+                        <a class="nav-link" href="#">Forums System</a>
+                        <a class="nav-link" href="#">Torrents System</a>
+                        <a class="nav-link" href="#">Users System</a>
+                    </nav>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Installer <span class="arrow"></span></a>
+                    <nav class="nav">
+                        <a class="nav-link" href="installer.html">Automated Installer</a>
+                        <a class="nav-link" href="install.html">Manual Install</a>
+                    </nav>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Updating <span class="arrow"></span></a>
+                    <nav class="nav">
+                        <a class="nav-link" href="#">Git Updater</a>
+                    </nav>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Changelog <span class="arrow"></span></a>
+                    <nav class="nav">
+                        <a class="nav-link" href="#">UNIT3D Changelog</a>
+                        <a class="nav-link" href="#">Installer Changelog</a>
+                    </nav>
+                </li>
+
+            </ul>
+        </section>
+    </div>
+</nav>
+<!-- /.navbar -->
+
+<!-- Header -->
+<header class="header" style="background-image: linear-gradient(135deg, #f9f7ff 0%, #e4e8ff 50%, #c8ceff 100%);">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <div class="col-lg-6">
+                <h1>UNIT3D Manual Install</h1>
+                <p class="lead mt-5 mb-8">Thinking about using UNIT3D? This page describes how to manually install
+                    UNIT3D.</p>
+            </div>
+
+            <div class="col-lg-5 ml-auto d-none d-lg-block">
+                <img src="assets/img/vector/2.png" style="height: 300px;" alt="img">
+            </div>
+
+        </div>
+    </div>
+</header>
+<!-- /.header -->
+
+<!-- Main Content -->
+<main class="main-content">
+    <div class="row">
+        <div class="container">
+
+            <h2 id="install">Manual Install<a class="anchor" href="#install"></a></h2>
+
+            <pre class="code-dark">
+
+Prerequisites Example:
+
+1. Install OS
+
+    Ubuntu Server 17.10 "Artful Aardvark" (64bits) or Ubuntu Server 16.04.4 LTS "Xenial Xerus" (64bits)
+
+2. Repositories
+
+    sudo add-apt-repository -y ppa:nginx/development
+    sudo add-apt-repository -y ppa:ondrej/php
+    sudo apt-get update
+
+3. Required Software
+
+    Tools
+    sudo apt-get install -y git tmux vim curl wget zip unzip htop nano build-essential
+
+    Supervisor
+    sudo apt-get install supervisor
+
+    Redis
+    sudo apt-get install redis-server
+
+    Nginx
+    sudo apt-get install -y nginx
+
+    PHP
+    sudo apt-get install php-pear php7.2-curl php7.2-dev php7.2-gd php7.2-mbstring php7.2-zip php7.2-mysql php7.2-xml php7.2-fpm
+
+    NodeJS and NPM
+    curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+    sudo apt-get install -y nodejs
+
+    Laravel Echo Server (for socket.io and broadcasting)
+    sudo npm install -g laravel-echo-server
+
+4. Configure PHP
+
+   sudo nano /etc/php/7.2/fpm/php.ini
+
+    FIND
+    ;cgi.fix_pathinfo=1
+
+    REPLACE WITH
+    cgi.fix_pathinfo=0
+
+    Save and close
+
+	Now restart php-fpm
+    sudo systemctl restart php7.2-fpm
+
+ 5. Install MySQL
+
+    sudo apt-get install mysql-server
+
+    mysql_secure_installation
+
+ 6. Configure Nginx
+
+    sudo nano /etc/nginx/sites-available/default
+
+    server {
+    listen 80 default_server;
+
+    root /var/www/html/public;
+
+    index index.html index.htm index.php;
+
+    server_name example.com;
+
+    location / {
+        try_files $uri $uri/ /index.php$is_args$args;
+    }
+
+    location ~ \.php$ {
+       include snippets/fastcgi-php.conf;
+       fastcgi_pass unix:/var/run/php/php7.2-fpm.sock;
+    }
+    }
+
+    Save and close.
+
+    Now restart nginx
+    sudo systemctl reload nginx
+
+7. Secure Nginx with Let's Encrypt
+
+    https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-16-04
+
+    **Note:** If you are using `ufw` or any other firewall you will need to `allow` port `6001` for the next step.
+
+    With `ufw` you can do this simply by running:
+    sudo ufw allow 6001
+
+8. nitialize Laravel Echo Server
+
+    Run:
+    laravel-echo-server init
+
+    The cli tool will help you setup a laravel-echo-server.json file in the root directory of your project.
+
+    This file will be loaded by the server during start up. You may edit this file later on to manage the configuration
+    of your server.
+
+    `? Do you want to run this server in development mode?` = `No` (Yes for debug or developement)
+
+    `? Which port would you like to serve from?` = `6001`
+
+    `? Which database would you like to use to store presence channel members?` = `redis`
+
+    `? Enter the host of your Laravel authentication server.` = `http://your-domain.tld`
+
+    `? Will you be serving on http or https?` = `http` or `https`
+
+    `? Do you want to generate a client ID/Key for HTTP API?` = `Yes`
+
+    `? Do you want to setup cross domain access to the API?` = `No`
+
+    You should see something like the following
+    appId: 73e82e6e1122cb58
+    key: 95eacbe008a722b247653afba0247c44
+    Configuration file saved. Run laravel-echo-server start to run server.
+
+
+    Note: DO NOT Run the start command !!!
+    The server should start automatically after loaded into Supervisor in the next section.
+
+    **Note:** If you are using SSL **(HTTPS)**, you will want to make sure that the certificate files are readable by
+     the user running the echo server.
+
+    For example if you are using `LetsEncrypt` for SSL, you may need to run a command like:
+    sudo chown www-data /etc/letsencrypt -R
+
+9. Configure Supervisor
+
+    sudo nano /etc/supervisor/conf.d/unit3d.conf
+
+    Example:
+    [program:unit3d-queue]
+    process_name=%(program_name)s_%(process_num)02d
+    command=php /var/www/html/artisan queue:work --sleep=3 --tries=3
+    autostart=true
+    autorestart=true
+    user=www-data
+    numprocs=2
+
+    [program:unit3d-socket-io]
+    process_name=%(program_name)s_%(process_num)02d
+    command=/usr/bin/node /usr/bin/laravel-echo-server start --dir=/var/www/html
+    autostart=true
+    autorestart=true
+    user=www-data
+    numprocs=1
+
+    **Notes:**
+
+    `command=php /var/www/html ...` change this to the absolute path to the root of your site files where the `artisan`
+    file resides.
+
+    `user=www-data` you will probably want to change to something like your web server be it `apache` or `www-data`
+
+    `--dir=/var/www/html` change this to the absolute path to the root of your site files
+
+    Once this is done, save and close!
+
+    Next lets load new config and start the process.
+
+    Run:
+    sudo supervisorctl reread && supervisorctl update
+
+    Make sure there running and all is good!
+
+    Run:
+    sudo supervisorctl
+
+    If you see something like following your good to go!
+    unit3d-queue:unit3d-queue_00           RUNNING   pid 12838, uptime 0:00:10
+    unit3d-queue:unit3d-queue_01           RUNNING   pid 12833, uptime 0:00:10
+    unit3d-socket-io:unit3d-socket-io_00   BACKOFF   Exited too quickly (process log may have details)
+    unit3d-socket-io:unit3d-socket-io_01   RUNNING   pid 12828, uptime 0:00:10
+
+
+    **Note:** type `exit` at the prompt to exit supervisorctl
+
+    Run:
+    sudo supervisorctl reload
+
+
+
+
+Main:
+1. Open a terminal and SSH into your server.
+2. Run `cd /var/www/html/`
+3. Run `git clone https://github.com/HDInnovations/UNIT3D`
+
+4. Run
+sudo chown -R www-data: storage bootstrap public config && sudo find . -type d -exec chmod 0755 '{}' + -or -type f -exec chmod 0644 '{}' +
+
+5. Run
+php -r "readfile('http://getcomposer.org/installer');" | sudo php -- --install-dir=/usr/bin/ --filename=composer
+
+6. Rename `.env.example` to `.env` and fill it with your APP, DB, REDIS and MAIL info.
+
+7. Run
+composer install && composer require predis/predis && npm install && npm install --save-dev socket.io-client && npm run dev
+
+8. Edit `config/api-keys.php`, `config/app.php` and `config/other.php` (These house some basic settings. Be sure to visit the config manager from staff dashboard after up and running.)
+
+9. Add   `* * * * * php /path/to/artisan schedule:run >> /dev/null 2>&1` to crontab.
+`/path/to/artisan` becomes whatever directory you put the codebase on your server.
+Example `* * * * * php /var/www/html/artisan schedule:run >> /dev/null 2>&1`
+
+10. Run
+php artisan key:generate
+
+11. Run
+php artisan migrate --seed
+
+12. Run
+sudo chown -R www-data: storage bootstrap public config
+
+13. Go to your sites URL.
+
+14. Login with the username `UNIT3D` and the password `UNIT3D`.
+**Note:** whatever you set in the `.env` if changed from defaults.
+
+15. Enjoy using UNIT3D.
+
+**Note:**
+If you recieve a error during `npm install` regarding `pngquant-bin@4.0.0` OR an error similar to `... binary doesn't seem to work correctly` please run the following command
+wget -q -O /tmp/libpng12.deb http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.54-1ubuntu1_amd64.deb && sudo dpkg -i /tmp/libpng12.deb && rm /tmp/libpng12.deb && npm install && npm run dev
+
+then try `npm install` again.
+            </pre>
+
+        </div>
+    </div>
+</main>
+<!-- /.main-content -->
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="row gap-y align-items-center">
+            <div class="col-md-12 text-center text-md-right">
+                <a href="#">© UNIT3D Docs</a>
+            </div>
+        </div>
+    </div>
+</footer><!-- /.footer -->
+
+
+<!-- Scripts -->
+<script src="assets/js/page.min.js"></script>
+<script src="assets/js/script.js"></script>
+
+</body>
+</html>
