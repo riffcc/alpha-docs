@@ -86,12 +86,12 @@
         <div class="row align-items-center">
 
             <div class="col-lg-6">
-                <h1>UNIT3D Installer</h1>
-                <p class="lead mt-5 mb-8">Thinking about using UNIT3D? Here is how easy it is to install it.</p>
+                <h1>UNIT3D Git Updater</h1>
+                <p class="lead mt-5 mb-8">Thinking about using UNIT3D? Here is how easy it is to pull updates in as we release them.</p>
             </div>
 
             <div class="col-lg-5 ml-auto d-none d-lg-block">
-                <img src="assets/img/vector/2.png" style="height: 300px;" alt="img">
+                <img src="assets/img/vector/4.png" style="height: 300px;" alt="img">
             </div>
 
         </div>
@@ -104,30 +104,29 @@
     <div class="row">
         <div class="container">
 
-            <h2 id="embedded">Installer Preview<a class="anchor" href="#embedded"></a></h2>
+            <h2 id="embedded">Git Updater Preview<a class="anchor" href="#embedded"></a></h2>
+
+            <div class="alert alert-info" role="alert">
+                <h4 class="alert-heading">Disclaimer!</h4>
+                <p>Use at your own risk! Always backup before performing this command! This updater is in beta!</p>
+            </div>
+
 
             <div class="code-preview">
                 <div class="video-wrapper ratio-16x9">
                     <iframe width="560" height="315"
-                            src="https://www.youtube.com/embed/ys6LU-sI7UU?rel=0&amp;showinfo=0" frameborder="0"
+                            src="https://www.youtube.com/embed/D7wyP-1xBwg?rel=0&amp;showinfo=0" frameborder="0"
                             gesture="media" allow="encrypted-media" allowfullscreen=""></iframe>
                 </div>
             </div>
 
             <div class="code-toolbar">
                 <pre class="language-markup">
-                    You will need a new server with a fresh install of Unbutu 16.04 - 18.04. You will then want to
-                    SSH to the server and run the following commands.
+                    Its as simple as running the following command!
 
                         <code class="language-markup">
-                            git clone https://github.com/ServNX/UNIT3D-INSTALLER.git installer
-                            cd installer
-                            sudo ./install.sh
+                            php artisan git:update
                         </code>
-
-                    Follow the step in your terminal from there! Done!
-
-                    For more info please visit "https://github.com/ServNX/UNIT3D-INSTALLER"
                 </pre>
             </div>
 
