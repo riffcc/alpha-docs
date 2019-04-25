@@ -52,10 +52,10 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Installer <span class="arrow"></span></a>
+                    <a class="nav-link" href="#">Installing <span class="arrow"></span></a>
                     <nav class="nav">
-                        <a class="nav-link" href="installer.html">Automated Installer</a>
-                        <a class="nav-link" href="install.html">Manual Install</a>
+                        <a class="nav-link" href="automated_install.html">Automated Installer</a>
+                        <a class="nav-link" href="manual_install.html">Manual Install</a>
                     </nav>
                 </li>
 
@@ -69,8 +69,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Changelog <span class="arrow"></span></a>
                     <nav class="nav">
-                        <a class="nav-link" href="#">UNIT3D Changelog</a>
-                        <a class="nav-link" href="#">Installer Changelog</a>
+                        <a class="nav-link" href="changelog.html">UNIT3D Changelog</a>
                     </nav>
                 </li>
 
@@ -86,7 +85,7 @@
         <div class="row align-items-center">
 
             <div class="col-lg-6">
-                <h1>UNIT3D Installer</h1>
+                <h1>UNIT3D Automated Installer</h1>
                 <p class="lead mt-5 mb-8">Thinking about using UNIT3D? Here is how easy it is to install it.</p>
             </div>
 
@@ -104,7 +103,27 @@
     <div class="row">
         <div class="container">
 
-            <h2 id="embedded">Installer Preview<a class="anchor" href="#embedded"></a></h2>
+            <h2 id="embedded">Automated Installer<a class="anchor" href="#embedded"></a></h2>
+
+            <div class="alert alert-danger" role="alert">
+                <h4 class="alert-heading">Note!</h4>
+                <p>
+                    You will need a new server with a fresh install of Unbutu 16.04 - 18.04. You will then want to
+                    SSH to the server and run the following commands.
+                </p>
+                <pre>git clone https://github.com/poppabear8883/UNIT3D-INSTALLER.git installer
+cd installer
+sudo ./install.sh</pre>
+            </div>
+
+            <div class="alert alert-info" role="alert">
+                <h4 class="alert-heading">All credits to <a href="https://github.com/poppabear8883" target="_blank">poppabear8883</a>
+                    for this wonderful installer.
+                </h4>
+                <p>For more info please visit <a href="https://github.com/poppabear8883/UNIT3D-INSTALLER" target="_blank">
+                    https://github.com/poppabear8883/UNIT3D-INSTALLER</a>
+                </p>
+            </div>
 
             <div class="code-preview">
                 <div class="video-wrapper ratio-16x9">
@@ -112,30 +131,6 @@
                             src="https://www.youtube.com/embed/ys6LU-sI7UU?rel=0&amp;showinfo=0" frameborder="0"
                             gesture="media" allow="encrypted-media" allowfullscreen=""></iframe>
                 </div>
-            </div>
-
-            <pre class="language-markup">
-                <span>
-                    <b>Note:</b>You will need a new server with a fresh install of Unbutu 16.04 - 18.04. You will then want to
-                    SSH to the server and run the following commands.
-                </span>
-
-                <pre class="code-dark language-markup">
-                    <code class="language-markup">
-git clone https://github.com/poppabear8883/UNIT3D-INSTALLER.git installer
-cd installer
-sudo ./install.sh
-                    </code>
-                </pre>
-            </pre>
-
-            <div class="alert alert-info" role="alert">
-                <p>Follow the simple steps in your terminal and watch the awesomeness happen. All credits to <a
-                        href="https://github.com/poppabear8883" target="_blank">poppabear8883</a>
-                    for this wonderful installer.</p>
-
-                    <p>For more info please visit <a href="https://github.com/poppabear8883/UNIT3D-INSTALLER" target="_blank">
-                        https://github.com/poppabear8883/UNIT3D-INSTALLER</a></p>
             </div>
 
         </div>

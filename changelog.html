@@ -27,7 +27,7 @@
         <div class="navbar-left">
             <button class="navbar-toggler" type="button">&#9776;</button>
             <a class="navbar-brand" href="index.html">
-                <h2 style="color: black; font-weight: 800;" >UNIT3D-Docs</h2>
+                <h2 style="color: black; font-weight: 800;">UNIT3D-Docs</h2>
             </a>
         </div>
 
@@ -86,12 +86,14 @@
         <div class="row align-items-center">
 
             <div class="col-lg-6">
-                <h1>UNIT3D Intro</h1>
-                <p class="lead mt-5 mb-8">Thinking about using UNIT3D? Here is alittle intro about it.</p>
+                <h1>UNIT3D Changelog</h1>
+                <p class="lead mt-5 mb-8">
+                    In this page, you can find a record of all the changes made to this project such as bug fixes, new features, etc.
+                </p>
             </div>
 
             <div class="col-lg-5 ml-auto d-none d-lg-block">
-                <img src="assets/img/vector/5.svg" style="height: 300px;" alt="img">
+                <img src="assets/img/vector/6.png" style="height: 300px;" alt="img">
             </div>
 
         </div>
@@ -101,67 +103,71 @@
 
 <!-- Main Content -->
 <main class="main-content">
-    <article class="container py-8">
-        <h1 class="display-4">Introduction</h1>
+    <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <span class="lead">
-                    We have been developing a Nex-Gen Torrent Tracker Software called "UNIT3D." This is a PHP software
-                    based off the lovely Laravel Framework -- currently Laravel Framework 5.6.33, MySQL Strict Mode Compliant
-                    and PHP 7.1 Ready. The code is well-designed and follows the PSR-2 coding style. It uses a MVC Architecture
-                    to ensure clarity between logic and presentation. As a hashing algorithm of Bcrypt or Argon2 is used,
-                    to ensure a safe and proper way to store the passwords for the users. A lightweight Blade Templating Engine.
-                    Caching System Supporting: "apc,” "array,” "database,” "file," "memcached," and "redis" methods. Eloquent and much more!
-                </span>
+
+
+            <!--
+            |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+            | Sidebar
+            |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+            !-->
+            <div class="col-md-4 col-xl-3">
+                <aside class="sidebar sidebar-sticky pr-md-4" style="width: 255px;">
+                    <h6 class="sidebar-title">Releases</h6>
+                    <ul class="nav nav-sidebar nav-sidebar-pill">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#v1-9-2">1.9.2</a>
+                        </li>
+                    </ul>
+                </aside>
             </div>
-        </div>
 
-        <br>
 
-        <h1 class="display-4">Some Preview Images</h1>
-        <div class="row">
-            <div class="col-md-12">
-                <span class="lead">
-                    4-5 Images will go here.
-                </span>
+            <!--
+            |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+            | Content
+            |‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒‒
+            !-->
+            <div class="col-md-7 col-xl-8 ml-md-auto py-8">
+
+                <div id="v1-9-2" class="card border hover-shadow-7 mb-8">
+                    <div class="card-body bb-1 bg-light flexbox">
+                        <h4 class="mb-0"><a href="#v1-9-2">1.9.2</a></h4>
+                        <time class="small">June 22, 2018</time>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="lead">UNIT3D v1.9.2 [Pre-Release]</div>
+
+                        <hr>
+
+                        <h5>Highlights</h5>
+                        <ul>
+                            <li>Major Refactor To Validation Error/Success/Warning and Info Message Handling.</li>
+                            <li>TMDB Recommended Movies/TV Updated.</li>
+                            <li>Secure Headers Updated.</li>
+                            <li>Multilingual Updates.</li>
+                            <li>Responsive Style Updates.</li>
+                            <li>Dependencies Updated.</li>
+                            <li>Multiple Bug Fixes.</li>
+                            <li>Code Cleanup (StyleCI).</li>
+                            <li>Code Optimizations.</li>
+                            <li>Query Optimizations.</li>
+                            <li>Plus MUCH MUCH More! [131 Commits Since UNIT3D v1.9.1]
+                                <a href="https://github.com/HDInnovations/UNIT3D/compare/v1.9.1...master" target="_blank">
+                                    See Complete Changes Here!
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+
             </div>
+
         </div>
-
-        <hr class="my-7">
-
-        <h3>Links:</h3>
-        <h6>
-            <i class="fa fa-globe text-success mr-3"></i>
-            <a href="https://unit3d.org/login">Demo Site</a>
-        </h6>
-
-        <h6>
-            <i class="fa fa-github-square mr-3"></i>
-            <a href="https://github.com/HDInnovations/UNIT3D">UNIT3D Repo</a>
-        </h6>
-
-        <h6>
-            <i class="fa fa-github-square mr-3"></i>
-            <a href="https://github.com/poppabear8883/UNIT3D-INSTALLER">UNIT3D Installer Repo</a>
-        </h6>
-
-        <h6>
-            <i class="fa fa-github-square mr-3"></i>
-            <a href="https://github.com/HDInnovations/UNIT3D-Docs">UNIT3D Docs Repo</a>
-        </h6>
-
-        <h6>
-            <i class="fa fa-heart text-danger mr-3"></i>
-            <a href="https://www.patreon.com/UNIT3D">Patreon: Support UNIT3D</a>
-        </h6>
-
-        <h6>
-            <i class="fa fa-link text-primary mr-3"></i>
-            <a href="https://discord.gg/T2YPNPZ">Discord Server</a>
-        </h6>
-
-    </article>
-
+    </div>
 </main>
 <!-- /.main-content -->
 
