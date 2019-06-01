@@ -137,9 +137,12 @@
 <main class="main-content">
     <div class="row">
         <div class="container">
-
-            <h2 id="install">Manual Install<a class="anchor" href="#install"></a></h2>
-
+            <h2>Manual Install</h2>
+	    <ul>
+		    <a href="#ubuntu"><li><h3># Ubuntu</h3></li></a>
+		    <a href="#arch-linux"><li><h3># Arch Linux</h3></li></a>
+	    </ul>
+	    <h2 id="ubuntu">Ubuntu Instructions</h2>
             <pre class="code-dark">
 
 Prerequisites Example:
@@ -453,7 +456,197 @@ wget -q -O /tmp/libpng12.deb http://mirrors.kernel.org/ubuntu/pool/main/libp/lib
 
     Enjoy using UNIT3D.
             </pre>
+            <h2 id="arch-linux">Arch Linux Instructions (x86_64)</h2>
+	    <pre class="code-dark">
+1. ## Required Software
 
+    #### Tools
+    <kbd>sudo pacman -S git vim curl zip unzip nano</kbd>
+
+    #### Supervisor
+    <kbd>sudo pacman -S <a href="http://supervisord.org/introduction.html" target="_blank">supervisor</a></kbd>
+
+    #### Redis
+    <kbd>sudo pacman -S <a href="https://wiki.archlinux.org/index.php/redis" target="_blank">redis</a></kbd>
+
+    #### Nginx
+    <kbd>sudo pacman -S <a href="https://wiki.archlinux.org/index.php/nginx" target="_blank">nginx</a></kbd>
+
+    #### PHP
+    <kbd>sudo pacman -S <a href="https://wiki.archlinux.org/index.php/nginx#FastCGI"
+target="_blank">php-fpm</a> php-gd php-intl </kbd>
+    <kbd>php-pear <a href="https://aur.archlinux.org/packages/php-pear/"
+    target=_"blank">(aur)</a></kbd>
+    ### MariaDB
+    <kbd>sudo pacman -S <a
+	 href="https://wiki.archlinux.org/index.php/MariaDB"
+  target="_blank">mariadb</a></kbd>
+    #### NodeJS and NPM
+    <kbd>sudo pacman -S nodejs npm</kbd>
+
+    #### Laravel Echo Server (for socket.io and broadcasting)
+    <kbd>sudo npm install -g laravel-echo-server</kbd>
+    </pre>
+    <pre class="code-dark">
+<h4>2. Configure PHP</h4>
+
+<kbd>sudo vim /etc/php/php.ini</kbd>
+
+- Uncomment
+<kbd>;extension=bcmath</kbd>
+<kbd>;extension=gd</kbd>
+<kbd>;extension=intl</kbd>
+<kbd>;extension=mysqli</kbd>
+<kbd>;extension=pdo_mysql</kbd>
+
+- Find
+<kbd>;cgi.fix_pathinfo=1</kbd>
+
+- Replace with
+<kbd>cgi.fix_pathinfo=0</kbd>
+
+- Save & close (:wq on vim)
+    </pre>
+     <pre class="code-dark">
+<h4>3. Configure MariaDB</h4>
+
+<kbd>mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql</kbd>
+<kbd>sudo systemctl enable mariadb && sudo systemctl start mariadb</kbd>
+<kbd>mysql_secure_installation</kbd>
+    </pre>
+    <pre class="code-dark">
+<h4>4. Configure Nginx</h4>
+<h5>Debian like structure</h5>
+<kbd>sudo mkdir /etc/nginx/sites-available</kbd>
+<kbd>sudo mkdir /etc/nginx/sites-enabled</kbd>
+
+- Edit config file :
+<kbd>sudo vim /etc/nginx/nginx.conf</kbd>
+
+- Append to the end of the http block :
+<kbd>http {</kbd>
+<kbd>    ...</kbd>
+<kbd>include sites-enabled/*;</kbd>
+<kbd>}</kbd>
+<h5>UNIT3D configuration</h5>
+<kbd>sudo vim /etc/nginx/sites-available/unit3d.conf</kbd>
+
+- Copy / paste
+<kbd>server {</kbd>
+<kbd>    listen 80 default_server;</kbd>
+<kbd>    root /usr/share/nginx/html/UNIT3D/public;</kbd>
+<kbd>    index index.html index.htm index.php;</kbd>
+<kbd>    server_name yourdomain.com;</kbd>
+<kbd>    error_log /var/log/nginx/error.log;</kbd>
+
+<kbd>    location ~* .(jpg|jpeg|png|gif|ico|svg)$ {</kbd>
+<kbd>        expires 365d;</kbd>
+<kbd>    }</kbd>
+
+<kbd>    location ~ .(gif|png|jpg|jpeg|svg|css|js|ico)$ {</kbd>
+<kbd>        valid_referers none blocked <i>yourdomain.com www.yourdomain.com</i>;</kbd>
+<kbd>        if ($invalid_referer) {</kbd>
+<kbd>            return   403;</kbd>
+<kbd>        }</kbd>
+<kbd>    }</kbd>
+<kbd>    location / {</kbd>
+<kbd>        try_files $uri $uri/ /index.php$is_args$args;</kbd>
+<kbd>    }</kbd>
+
+<kbd>    location ~ \.php$ {</kbd>
+<kbd>        include fastcgi.conf;</kbd>
+<kbd>        fastcgi_pass unix:/var/run/php-fpm/php-fpm.sock;</kbd>
+<kbd>     }</kbd>
+<kbd>}</kbd>
+
+<b>IMPORTANT :</b> Replace <i>yourdomain.com</i> with your FQDN 
+- Save & close
+- Activate this entry :
+<kbd>sudo ln -s /etc/nginx/sites-available/unit3d.conf /etc/nginx/sites-enabled/unit3d.conf</kbd>
+- Test the configuration :
+<kbd>sudo nginx -t</kbd>
+Error <kbd><i>could not build optimal types_hash</i></kbd> :
+- Append <kbd>types_hash_max_size 4096;</kbd> to your http block in /etc/nginx/nginx.conf 
+    </pre>
+
+     <pre class="code-dark">
+<h4>5. Start / enable newly installed daemons</h4>
+<kbd>sudo systemctl enable ufw cronie supervisord redis nginx php-fpm</kbd>
+<kbd>sudo systemctl start ufw cronie supervisord redis nginx php-fpm</kbd>
+     </pre>
+     <pre class="code-dark">
+<h4>6. Configure the firewall</h4>
+<h5>Enable the firewall</h5>
+<kbd>sudo ufw enable</kbd>
+<h5>Allow HTTPS traffic</h5>
+<kbd>sudo ufw allow https</kbd>
+<h5>For HTTP only traffic</h5>
+<kbd>sudo ufw allow http</kbd>
+<h5>For the chatbox</h5>
+<kbd>sudo ufw allow 8443</kbd>
+    </pre>
+    <pre class="code-dark">
+<h4>7. Installation</h4>
+<h5>UNIT3D</h5>
+<kbd>cd /usr/share/nginx/html</kbd>
+<kbd>sudo git clone https://github.com/HDInnovations/UNIT3D</kbd>
+<kbd>sudo chown -R <i>current-user</i>: UNIT3D/</kbd> (replace <i>current-user</i>)
+<kbd>cd UNIT3D/</kbd>
+<h5>Composer</h5>
+- Copy .env.example to .env and fill it with your APP, DB, REDIS, API KEYS and
+MAIL info
+<kbd>php -r "readfile('http://getcomposer.org/installer');" | sudo php --install-dir=/usr/bin/ --filename=composer</kbd>
+<kbd>composer install && composer require predis/predis && npm install && npm install --save-dev socket.io-client && npm run prod</kbd>
+<kbd>sudo chown -R http: storage bootstrap public config && sudo find . -type d -exec chmod 0755 '{}' + -or -type f -exec chmod 0644 '{}' +</kbd>
+<h5>Setup your CRON</h5>
+<kbd>sudo crontab -e</kbd>
+- Append
+<kbd>* * * * * php <i>/usr/share/nginx/html/UNIT3D/artisan</i> schedule:run >> /dev/null 2>&1</kbd>
+<i>/usr/share/nginx/html/UNIT3D/artisan</i> becomes whatever directory you've
+set in your nginx config file
+<h5>Set up UNIT3D</h5>
+<kbd>php artisan key:generate</kbd>
+<kbd>php artisan migrate --seed</kbd>
+<kbd>laravel-echo-server init</kbd>
+The cli tool will help you setup a laravel-echo-server.json 
+file in the root directory of your project (/usr/share/nginx/html).
+This file will be loaded by the server during start up. 
+You may edit this file later on to manage the configuration of your server.
+<ul>
+<li>? Do you want to run this server in development mode? = No (Yes for debug or
+developement)</li>
+<li>? Which port would you like to serve from? = 8443</li>
+<li>? Which database would you like to use to store presence channel members? =
+redis</li>
+<li>? Enter the host of your Laravel authentication server. =
+<i>https://yourdomain.com</i></li>
+<li>? Will you be serving on http or https? = https</li>
+<li>? Do you want to generate a client ID/Key for HTTP API? = Yes</li>
+<li>? Do you want to setup cross domain access to the API? = No</li>
+</ul>
+You should see something like the following :
+
+appId: 73e82e6e1122cb58
+key: 95eacbe008a722b247653afba0247c44
+
+<b>Note</b>: DO NOT Run the start command; the server should start
+automatically after loaded into Supervisor in the next section.
+<kbd>sudo chown -R http: .</kbd>
+    </pre>
+    <pre class="code-dark">
+<h4>8. Secure Nginx with Let's Encrypt</h4>
+- Install Certbot
+<kbd>sudo pacman -S certbot certbot-nginx</kbd>
+- Create the certificates
+<kbd>sudo certbot --nginx -d <i>yourdomain.com</i> -d <i>www.yourdomain.com</i></kbd>
+- Enable auto-renewal
+<kbd>sudo vim /etc/cron.daily/certbot-renew.sh</kbd>
+- Append
+<kbd>#!/bin/bash</kbd>
+
+<kbd>certbot renew --pre-hook "systemctl stop nginx" --post-hook "systemctl reload nginx"</kbd>
+-  Save & close
+    </pre>
         </div>
     </div>
 </main>
