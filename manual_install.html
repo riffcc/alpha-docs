@@ -458,34 +458,25 @@ wget -q -O /tmp/libpng12.deb http://mirrors.kernel.org/ubuntu/pool/main/libp/lib
             </pre>
             <h2 id="arch-linux">Arch Linux Instructions (x86_64)</h2>
 	    <pre class="code-dark">
-1. ## Required Software
-
-    #### Tools
-    <kbd>sudo pacman -S git vim curl zip unzip nano</kbd>
-
-    #### Supervisor
-    <kbd>sudo pacman -S <a href="http://supervisord.org/introduction.html" target="_blank">supervisor</a></kbd>
-
-    #### Redis
-    <kbd>sudo pacman -S <a href="https://wiki.archlinux.org/index.php/redis" target="_blank">redis</a></kbd>
-
-    #### Nginx
-    <kbd>sudo pacman -S <a href="https://wiki.archlinux.org/index.php/nginx" target="_blank">nginx</a></kbd>
-
-    #### PHP
-    <kbd>sudo pacman -S <a href="https://wiki.archlinux.org/index.php/nginx#FastCGI"
-target="_blank">php-fpm</a> php-gd php-intl </kbd>
-    <kbd>php-pear <a href="https://aur.archlinux.org/packages/php-pear/"
+<h4>1. ## Required Software</h4>
+<h5>Tools</h5>
+<kbd>sudo pacman -S git vim curl zip unzip</kbd>
+<h5>Supervisor</h5>
+<kbd>sudo pacman -S <a href="http://supervisord.org/introduction.html" target="_blank">supervisor</a></kbd>
+<h5>Redis</h5>
+<kbd>sudo pacman -S <a href="https://wiki.archlinux.org/index.php/redis" target="_blank">redis</a></kbd>
+<h5>Nginx</h5>
+<kbd>sudo pacman -S <a href="https://wiki.archlinux.org/index.php/nginx" target="_blank">nginx</a></kbd>
+<h5>PHP</h5>
+<kbd>sudo pacman -S <a href="https://wiki.archlinux.org/index.php/nginx#FastCGI" target="_blank">php-fpm</a> php-gd php-intl</kbd>
+<kbd>php-pear <a href="https://aur.archlinux.org/packages/php-pear/"
     target=_"blank">(aur)</a></kbd>
-    ### MariaDB
-    <kbd>sudo pacman -S <a
-	 href="https://wiki.archlinux.org/index.php/MariaDB"
-  target="_blank">mariadb</a></kbd>
-    #### NodeJS and NPM
-    <kbd>sudo pacman -S nodejs npm</kbd>
-
-    #### Laravel Echo Server (for socket.io and broadcasting)
-    <kbd>sudo npm install -g laravel-echo-server</kbd>
+<h5>MariaDB</h5>
+<kbd>sudo pacman -S <a href="https://wiki.archlinux.org/index.php/MariaDB" target="_blank">mariadb</a></kbd>
+<h5>NodeJS and NPM</h5>
+<kbd>sudo pacman -S nodejs npm</kbd>
+<h5>Laravel Echo Server (for socket.io and broadcasting)</h5>
+<kbd>sudo npm install -g laravel-echo-server</kbd>
     </pre>
     <pre class="code-dark">
 <h4>2. Configure PHP</h4>
@@ -526,7 +517,7 @@ target="_blank">php-fpm</a> php-gd php-intl </kbd>
 - Append to the end of the http block :
 <kbd>http {</kbd>
 <kbd>    ...</kbd>
-<kbd>include sites-enabled/*;</kbd>
+<kbd>    include sites-enabled/*;</kbd>
 <kbd>}</kbd>
 <h5>UNIT3D configuration</h5>
 <kbd>sudo vim /etc/nginx/sites-available/unit3d.conf</kbd>
@@ -565,7 +556,8 @@ target="_blank">php-fpm</a> php-gd php-intl </kbd>
 <kbd>sudo ln -s /etc/nginx/sites-available/unit3d.conf /etc/nginx/sites-enabled/unit3d.conf</kbd>
 - Test the configuration :
 <kbd>sudo nginx -t</kbd>
-Error <kbd><i>could not build optimal types_hash</i></kbd> :
+
+<b>Note : </b>If you get the error <kbd><i>could not build optimal types_hash</i></kbd> :
 - Append <kbd>types_hash_max_size 4096;</kbd> to your http block in /etc/nginx/nginx.conf 
     </pre>
 
@@ -629,7 +621,7 @@ You should see something like the following :
 appId: 73e82e6e1122cb58
 key: 95eacbe008a722b247653afba0247c44
 
-<b>Note</b>: DO NOT Run the start command; the server should start
+<b>Note : </b>DO NOT Run the start command; the server should start
 automatically after loaded into Supervisor in the next section.
 <kbd>sudo chown -R http: .</kbd>
     </pre>
@@ -646,7 +638,70 @@ automatically after loaded into Supervisor in the next section.
 
 <kbd>certbot renew --pre-hook "systemctl stop nginx" --post-hook "systemctl reload nginx"</kbd>
 -  Save & close
+
+<b>Note : </b>If you are using SSL (HTTPS), you will want to make sure that 
+the certificate files are readable by the user running the echo server.
+
+For example if you are using LetsEncrypt for SSL, you may need to run a command like :
+<kbd>sudo chown http /etc/letsencrypt -R</kbd>
+
+<b>Note : </b>If you are running UNIT3D on a non HTTPS instance you MUST change the following configs.
+
+- Edit config/session.php (HTTPS Only Cookies -> false)
+<kbd>'secure' => env('SESSION_SECURE_COOKIE', false),</kbd>
+- Edit config/secure-headers.php (HTTP Strict Transport Security -> false)
+<kbd>'hsts' => [
+    'enable' => false,</kbd>
+
+- Edit config/secure-headers.php (Content Security Policy -> disabled)
+<kbd>'custom-csp' => "",</kbd>
     </pre>
+    <pre class="code-dark">
+<h4>9. Configure Supervisor</h4>
+<kbd>sudo vim /etc/supervisor.d/unit3d.ini</kbd>
+
+<kbd>[program:unit3d-queue]
+process_name=%(program_name)s_%(process_num)02d
+command=php /usr/share/nginx/html/UNIT3D/artisan queue:work --sleep=3 --tries=3
+startsecs = 0
+autostart=true
+autorestart=true
+user=http
+numprocs=2
+
+[program:unit3d-socket-io]
+process_name=%(program_name)s_%(process_num)02d
+command=/usr/bin/node /usr/bin/laravel-echo-server start --dir=/usr/share/nginx/html/UNIT3D
+autostart=true
+autorestart=true
+user=http
+numprocs=1</kbd>
+
+<b>Note : </b>
+Adapt <kbd>/var/www/html</kbd> to the root directory of your server
+
+- Save and close
+- Load new config and start the process
+<kbd>sudo supervisorctl reread && sudo supervisorctl update && sudo supervisorctl reload</kbd>
+<kbd>sudo supervisorctl</kbd>
+You should see something like the following : 
+
+<kbd>unit3d-queue:unit3d-queue_00           RUNNING   pid 12838, uptime 0:00:10</kbd>
+<kbd>unit3d-queue:unit3d-queue_01           RUNNING   pid 12833, uptime0:00:10</kbd>
+<kbd>unit3d-socket-io:unit3d-socket-io_01   RUNNING   pid 12828, uptime 0:00:10</kbd>
+<b>Note :</b> type exit at the prompt to exit supervisorctl
+- Run
+<kbd>sdo supervisorctl reload</kbd>
+	</pre>
+	<pre class="code-dark">
+<h4>10. Enjoy</h4>
+You can now go to your site's URL
+<b>Note : </b>The default username and password for admin is UNIT3D (set in .env)
+<b>Note : </b>You can edit files in the <kbd>config/</kbd> folder manually or via the
+config manager in the dashboard
+
+<h4>Enjoy using UNIT3D !</h4>
+	</pre>
         </div>
     </div>
 </main>
