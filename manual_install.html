@@ -144,148 +144,83 @@
 	    </ul>
 	    <h2 id="ubuntu">Ubuntu Instructions</h2>
             <pre class="code-dark">
+<h4>1. Install OS</h4>
+<kbd>Ubuntu Server 17.10 "Artful Aardvark" (64bits)</kbd>
+Or
 
-Prerequisites Example:
-
-1. ## Install OS
-
-    `Ubuntu Server 17.10 "Artful Aardvark" (64bits)`
-
-    or
-
-    `Ubuntu Server 16.04.4 LTS "Xenial Xerus" (64bits)`
+<kbd>Ubuntu Server 16.04.4 LTS "Xenial Xerus" (64bits)</kbd>
+            </pre>
+            <pre class="code-dark">
+<h4>2. Repositories</h4>
+<kbd>sudo add-apt-repository -y ppa:nginx/development</kbd>
+<kbd>sudo add-apt-repository -y ppa:ondrej/php</kbd>
+<kbd>sudo apt update</kbd>
             </pre>
 
             <pre class="code-dark">
-2. ## Repositories
-
-    ```
-    sudo add-apt-repository -y ppa:nginx/development
-    sudo add-apt-repository -y ppa:ondrej/php
-    sudo apt-get update
-    ```
+<h4>3. Required Software</h4>
+<h5>Tools</h5>
+<kbd>sudo apt install git tmux vim curl wget zip unzip htop nano build-essential</kbd>
+<h5>Supervisor</h5>
+<kbd>sudo apt install supervisor</kbd>
+<h5>Redis</h5>
+<kbd>sudo apt install redis-server</kbd>
+<h5>Nginx</h5>
+<kbd>sudo apt install nginx</kbd>
+<h5>PHP</h5>
+<kbd>sudo apt install php-pear php7.3-curl php7.3-dev php7.3-gd php7.3-mbstring php7.3-zip php7.3-mysql php7.3-xml php7.3-fpm php7.3-intl php7.3-bcmath</kbd>
+<h5>NodeJS and NPM</h5>
+<kbd>curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -</kbd>
+<kbd>sudo apt install nodejs</kbd>
+<h5>Laravel Echo Server (for socket.io and broadcasting)</h5>
+<kbd>sudo npm install -g laravel-echo-server</kbd>
             </pre>
 
             <pre class="code-dark">
-3. ## Required Software
-
-    #### Tools
-    ```
-    sudo apt-get install -y git tmux vim curl wget zip unzip htop nano build-essential
-    ```
-
-    #### Supervisor
-    ```
-    sudo apt-get install supervisor
-    ```
-
-    #### Redis
-    ```
-    sudo apt-get install redis-server
-    ```
-
-    #### Nginx
-    ```
-    sudo apt-get install -y nginx
-    ```
-
-    #### PHP
-    ```
-    sudo apt-get install php-pear php7.3-curl php7.3-dev php7.3-gd php7.3-mbstring php7.3-zip php7.3-mysql php7.3-xml php7.3-fpm php7.3-intl php7.3-bcmath
-    ```
-
-    #### NodeJS and NPM
-    ```
-    curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-    sudo apt-get install -y nodejs
-    ```
-
-    #### Laravel Echo Server (for socket.io and broadcasting)
-    ```
-    sudo npm install -g laravel-echo-server
-    ```
+<h4>4. Configure PHP</h4>
+<kbd>sudo nano /etc/php/7.3/fpm/php.ini</kbd>
+- Find
+<kbd>;cgi.fix_pathinfo=1</kbd>
+- Replace with
+<kbd>cgi.fix_pathinfo=0</kbd>
+- Save and close (CTRL + X)
+- Restart php-fpm
+<kbd>sudo systemctl restart php7.3-fpm</kbd>
             </pre>
-
             <pre class="code-dark">
-4. ## Configure PHP
-
-    ```
-    sudo nano /etc/php/7.3/fpm/php.ini
-    ```
-
-    FIND
-    ```
-    ;cgi.fix_pathinfo=1
-    ```
-    REPLACE WITH
-    ```
-    cgi.fix_pathinfo=0
-    ```
-
-    Save and close
-
-	Now restart php-fpm
-    ```
-    sudo systemctl restart php7.3-fpm
-    ```
+<h4>5. Install MySQL</h4>
+<kbd>sudo apt install mysql-server</kbd>
+<kbd>mysql_secure_installation</kbd>
             </pre>
-
             <pre class="code-dark">
- 5. ## Install MySQL
-
-    ```
-    sudo apt-get install mysql-server
-    ```
-
-    ```
-    mysql_secure_installation
-    ```
-            </pre>
-
-            <pre class="code-dark">
- 6. ## Configure Nginx
-
-    ```
-    sudo nano /etc/nginx/sites-available/default
-    ```
-
-    ```
-    server {
-    listen 80 default_server;
-
-    root /var/www/html/public;
-
-    index index.html index.htm index.php;
-
-    server_name yourdomain.com;
-
-    location ~* .(jpg|jpeg|png|gif|ico|svg)$ {
-        expires 365d;
-    }
-
-    location ~ .(gif|png|jpg|jpeg|svg|css|js|ico)$ {
-        valid_referers none blocked yourdomain.com www.yourdomain.com;
-        if ($invalid_referer) {
-            return   403;
-        }
-    }
-
-    location / {
-        try_files $uri $uri/ /index.php$is_args$args;
-    }
-
-    location ~ \.php$ {
-       include snippets/fastcgi-php.conf;
-       fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
-    }
-    }
-    ```
-    Save and close.
-
-	Now restart nginx
-    ```
-    sudo systemctl reload nginx
-    ```
+<h4>6. Configure Nginx</h4>
+<kbd>sudo nano /etc/nginx/sites-available/default</kbd>
+- Append
+<kbd>server {
+	listen 80 default_server;
+	root /var/www/html/public;
+	index index.html index.htm index.php;
+	server_name yourdomain.com;
+	location ~* .(jpg|jpeg|png|gif|ico|svg)$ {
+		expires 365d;
+	}
+	location ~ .(gif|png|jpg|jpeg|svg|css|js|ico)$ {
+		valid_referers none blocked yourdomain.com www.yourdomain.com;
+		if ($invalid_referer) {
+		    return   403;
+		}
+	}
+	location / {
+		try_files $uri $uri/ /index.php$is_args$args;
+	}
+	location ~ \.php$ {
+		include snippets/fastcgi-php.conf;
+		fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
+	}
+}</kbd>
+- Save and close
+- Restart nginx
+<kbd>sudo systemctl reload nginx</kbd>
             </pre>
 
             <pre class="code-dark">
@@ -458,7 +393,7 @@ wget -q -O /tmp/libpng12.deb http://mirrors.kernel.org/ubuntu/pool/main/libp/lib
             </pre>
             <h2 id="arch-linux">Arch Linux Instructions (x86_64)</h2>
 	    <pre class="code-dark">
-<h4>1. ## Required Software</h4>
+<h4>1. Required Software</h4>
 <h5>Tools</h5>
 <kbd>sudo pacman -S git vim curl zip unzip</kbd>
 <h5>Supervisor</h5>
