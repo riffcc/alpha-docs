@@ -201,9 +201,9 @@ Or
 <h5>Nginx</h5>
 <kbd>sudo apt install nginx</kbd><br>
 <h5>PHP</h5>
-<kbd>sudo apt install php-pear php7.3-curl php7.3-dev php7.3-gd php7.3-mbstring php7.3-zip php7.3-mysql php7.3-xml php7.3-fpm php7.3-intl php7.3-bcmath</kbd><br>
+<kbd>sudo apt install php-pear php7.4-curl php7.4-dev php7.4-gd php7.4-mbstring php7.4-zip php7.4-mysql php7.4-xml php7.4-fpm php7.4-intl php7.4-bcmath</kbd><br>
 <h5>NodeJS and NPM</h5>
-<kbd>curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -</kbd>
+<kbd>curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -</kbd>
 <kbd>sudo apt install nodejs</kbd><br>
 <h5>Laravel Echo Server (for socket.io and broadcasting)</h5>
 <kbd>sudo npm install -g laravel-echo-server</kbd><br>
@@ -211,14 +211,14 @@ Or
 
             <pre class="code" id="ubuntu-php">
 <h4>4. Configure PHP</h4>
-<kbd>sudo nano /etc/php/7.3/fpm/php.ini</kbd>
+<kbd>sudo nano /etc/php/7.4/fpm/php.ini</kbd>
 - Find
 <kbd>;cgi.fix_pathinfo=1</kbd>
 - Replace with
 <kbd>cgi.fix_pathinfo=0</kbd>
 - Save and close (CTRL + X)
 - Restart php-fpm
-<kbd>sudo systemctl restart php7.3-fpm</kbd>
+<kbd>sudo systemctl restart php7.4-fpm</kbd>
             </pre>
             <pre class="code" id="ubuntu-nginx">
 <h4>5. Configure Nginx</h4>
@@ -229,10 +229,10 @@ Or
 	root /var/www/html/public;
 	index index.html index.htm index.php;
 	server_name yourdomain.com;
-	location ~* .(jpg|jpeg|png|gif|ico|svg)$ {
+	location ~* \.(jpg|jpeg|png|gif|ico|svg)$ {
 		expires 365d;
 	}
-	location ~ .(gif|png|jpg|jpeg|svg|css|js|ico)$ {
+	location ~ \.(gif|png|jpg|jpeg|svg|css|js|ico)$ {
 		valid_referers none blocked yourdomain.com www.yourdomain.com;
 		if ($invalid_referer) {
 		    return   403;
@@ -243,7 +243,7 @@ Or
 	}
 	location ~ \.php$ {
 		include snippets/fastcgi-php.conf;
-		fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
+		fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
 	}
 }</kbd>
 - Save and close
@@ -276,12 +276,12 @@ You are higly encouraged to setup HTTPS in your website.<br>
 <h5>UNIT3D</h5>
 <kbd>cd /var/www/html/</kbd>
 <kbd>git clone https://github.com/HDInnovations/UNIT3D</kbd>
-<kbd>sudo chown -R www-data: storage bootstrap public config && sudo find . -type d -exec chmod 0755 '{}' + -or -type f -exec chmod 0644 '{}' +</kbd>
+<kbd>sudo chown -R www-data: storage bootstrap public config && sudo find . -type d -exec chmod 0775 '{}' + -or -type f -exec chmod 0644 '{}' +</kbd>
 - Copy .env.example to .env and fill it with your APP, DB, REDIS, API KEYS and MAIL info<br>
 <h5>Composer</h5>
-<kbd>php -r "readfile('http://getcomposer.org/installer');" | sudo php --install-dir=/usr/bin/ --filename=composer</kbd>
+<kbd>php -r "readfile('http://getcomposer.org/installer');" | sudo php -- --install-dir=/usr/bin/ --filename=composer</kbd>
 <kbd>composer install && composer require predis/predis && npm install && npm install --save-dev socket.io-client && npm run prod</kbd><br>
-<b class="border-warning">Note : </b>If you recieve a error during <kbd>npm install</kbd> regarding <b>pngquant-bin@4.0.0</b> Or an error similar to 
+<b class="border-warning">Note : </b>If you recieve a error during <kbd>npm install</kbd> regarding <b>pngquant-bin@4.0.0</b> Or an error similar to
 <kbd><i>... binary doesn't seem to work correctly</i></kbd> please run the following commands
 <kbd>wget -q -O /tmp/libpng12.deb http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.54-1ubuntu1_amd64.deb</kbd>
 <kbd>sudo dpkg -i /tmp/libpng12.deb && rm /tmp/libpng12.deb && npm install && npm run prod</kbd><br>
@@ -296,9 +296,9 @@ set in your nginx config file<br>
 <kbd>php artisan migrate --seed</kbd>
 <kbd>sudo chown -R www-data: storage bootstrap public config</kbd>
 <kbd>laravel-echo-server init</kbd>
-The cli tool will help you setup a laravel-echo-server.json 
+The cli tool will help you setup a laravel-echo-server.json
 file in the root directory of your project (/usr/share/nginx/html).
-This file will be loaded by the server during start up. 
+This file will be loaded by the server during start up.
 You may edit this file later on to manage the configuration of your server.
 <ul>
 <li>? Do you want to run this server in development mode? = No (Yes for debug or
@@ -445,14 +445,14 @@ config manager in the dashboard<br>
 <kbd>        fastcgi_pass unix:/var/run/php-fpm/php-fpm.sock;</kbd>
 <kbd>     }</kbd>
 <kbd>}</kbd><br>
-<b>Note : </b>Replace <i>yourdomain.com</i> with your FQDN 
+<b>Note : </b>Replace <i>yourdomain.com</i> with your FQDN
 - Save & close
 - Activate this entry
 <kbd>sudo ln -s /etc/nginx/sites-available/unit3d.conf /etc/nginx/sites-enabled/unit3d.conf</kbd>
 - Test the configuration
 <kbd>sudo nginx -t</kbd><br>
 <b>Note : </b>If you get the error <kbd><i>could not build optimal types_hash</i></kbd>
-append <kbd>types_hash_max_size 4096;</kbd> to your http block in /etc/nginx/nginx.conf 
+append <kbd>types_hash_max_size 4096;</kbd> to your http block in /etc/nginx/nginx.conf
     </pre>
 
      <pre class="code" id="arch-daemons">
@@ -494,9 +494,9 @@ set in your nginx config file<br>
 <kbd>php artisan key:generate</kbd>
 <kbd>php artisan migrate --seed</kbd>
 <kbd>laravel-echo-server init</kbd>
-The cli tool will help you setup a laravel-echo-server.json 
+The cli tool will help you setup a laravel-echo-server.json
 file in the root directory of your project (/usr/share/nginx/html).
-This file will be loaded by the server during start up. 
+This file will be loaded by the server during start up.
 You may edit this file later on to manage the configuration of your server.
 <ul>
 <li>? Do you want to run this server in development mode? = No (Yes for debug or
@@ -531,7 +531,7 @@ automatically after loaded into Supervisor in the next section.<br>
 
 certbot renew --pre-hook "systemctl stop nginx" --post-hook "systemctl reload nginx"</kbd>
 -  Save & close<br>
-<b>Note : </b>If you are using SSL (HTTPS), you will want to make sure that 
+<b>Note : </b>If you are using SSL (HTTPS), you will want to make sure that
 the certificate files are readable by the user running the echo server.
 For example if you are using LetsEncrypt for SSL, you may need to run a command like :
 <kbd>sudo chown http /etc/letsencrypt -R</kbd>
