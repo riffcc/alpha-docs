@@ -263,9 +263,11 @@
 
             <div class="code border-success" id="ubuntu-https">
                 <h4>6.1 Secure Nginx with Let's Encrypt</h4>
-                <p><a href="https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-16-04">https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-16-04</a></p>
+                <p>
+                    <a href="https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-16-04">https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-16-04</a>
+                </p>
                 <p><b>Note : </b>If you are using ufw or any other firewall you will need to `allow` port `8443` for the
-                next step.</p>
+                    next step.</p>
                 <p>With ufw</p>
                 <pre>sudo ufw allow 8443 && sudo ufw allow ssh && sudo ufw enable</pre>
             </div>
@@ -630,31 +632,48 @@ unit3d-socket-io:unit3d-socket-io_01 RUNNING pid 12828, uptime 0:00:10</pre>
                         it
                         for the more traditional .sock based FPM config</p>
                     <pre>yoursite.com {
+    root * /app/public
+    log {
+        output file /var/log/caddy/yoursite.access.log {
+        	roll_size 10MiB
+	        roll_keep 5
+	        roll_keep_for 48h
+        }
+        format console
+    }
     // Should point to the port you configured for laravel-echo-server
     proxy /socket.io/ localhost:8443 {
-            websocket
+        header_upstream Host {host}
+        header_upstream X-Real-IP {remote}
+        header_upstream X-Forwarded-For {remote}
+        websocket
     }
-    proxy / localhost:8080 {
-            transparent
-    }
-    // Email for Let's encrypt
-    tls xxx@host.com
-}
-                </pre>
-
-                    <pre>yoursite.com {
-    // Should point to the port you configured for laravel-echo-server
-    proxy /socket.io/ localhost:8443 {
-            websocket
-    }
+    file_server
+    encode gzip zstd
+    # Port based fcgi listener for things like docker or separate server instances
+    # php_fastcgi app:9000
+    # Standard unix domain socket based config
     php_fastcgi unix//var/run/php-fpm/php-fpm.sock
-    // Email for Let's encrypt
-    tls xxx@host.com
+    # Email for Let's encrypt
+    tls xxx@host.com {
+        # Uncomment for testing cert generation
+        # ca https://acme-staging-v02.api.letsencrypt.org/directory
+    	protocols tls1.2 tls1.3
+    }
 }
                 </pre>
+
+                    <p>By default unit3d will use port 8443 for socket.io connections. When proxying over the same HTTPS
+                        port (443), you must change this.</p>
+                    <p>Open <kbd>resources/js/bootstrap.js</kbd> and change window.Echo to the following</p>
+                    <pre>window.Echo = new Echo({
+    broadcaster: 'socket.io',
+    host: window.location.hostname,
+});</pre>
+
+
+                    </pre>
                 </div>
-
-
             </div>
         </div>
     </div>
