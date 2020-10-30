@@ -33,9 +33,7 @@
 
         <section class="navbar-mobile">
             <span class="navbar-divider d-mobile-none"></span>
-
             <ul class="nav nav-navbar">
-
                 <li class="nav-item">
                     <a class="nav-link" href="#">UNIT3D <span class="arrow"></span></a>
                     <nav class="nav">
@@ -61,14 +59,14 @@
                     </nav>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Themes <span class="arrow"></span></a>
-                    <nav class="nav">
-                        <a class="nav-link" href="light_theme.html">Light</a>
-                        <a class="nav-link" href="galactic_theme.html">Galactic</a>
-                        <a class="nav-link" href="dark_theme.html">Dark</a>
-                    </nav>
-                </li>
+                <!--                <li class="nav-item">-->
+                <!--                    <a class="nav-link" href="#">Themes <span class="arrow"></span></a>-->
+                <!--                    <nav class="nav">-->
+                <!--                        <a class="nav-link" href="light_theme.html">Light</a>-->
+                <!--                        <a class="nav-link" href="galactic_theme.html">Galactic</a>-->
+                <!--                        <a class="nav-link" href="dark_theme.html">Dark</a>-->
+                <!--                    </nav>-->
+                <!--                </li>-->
 
                 <li class="nav-item">
                     <a class="nav-link" href="#">Multilingual <span class="arrow"></span></a>
@@ -116,17 +114,14 @@
 <header class="header" style="background-image: linear-gradient(135deg, #f9f7ff 0%, #e4e8ff 50%, #c8ceff 100%);">
     <div class="container">
         <div class="row align-items-center">
-
             <div class="col-lg-6">
                 <h1>UNIT3D Manual Install</h1>
                 <p class="lead mt-5 mb-8">Thinking about using UNIT3D? This page describes how to manually install
                     UNIT3D.</p>
             </div>
-
             <div class="col-lg-5 ml-auto d-none d-lg-block">
                 <img src="assets/img/vector/2.png" style="height: 300px;" alt="img">
             </div>
-
         </div>
     </div>
 </header>
@@ -137,95 +132,109 @@
     <div class="row">
         <div class="container">
             <h2>Manual Install</h2>
-	    <ul>
-		<a href="#ubuntu"><li><h3># Ubuntu</h3></li></a>
-		<ol>
-                    <a href="#ubuntu-os"><li><h4> Os</h4></li></a>
-                    <a href="#ubuntu-repos"><li><h4> Repositories</h4></li></a>
-		    <a href="#ubuntu-required-soft"><li><h4> Required Software</h3></li></a>
-                    <a href="#ubuntu-php"><li><h4> Configure PHP</h4></li></a>
-                    <a href="#ubuntu-nginx"><li><h4> Configure Nginx</h4></li></a>
-		    <a href="#ubuntu-https"><li><h4> HTTPS</h4></li></a>
-		    <ol>
-			    <a href="#ubuntu-https"><li><h4> Let's encrypt</h4></li></a>
-			    <a href="#ubuntu-http"><li><h4> HTTP only</h4></li></a>
-		    </ol>
-		    <a href="#ubuntu-installation"><li><h4> Installation</h4></li></a>
-                    <a href="#ubuntu-supervisor"><li><h4> Configure Supervisor</h4></li></a>
-                    <a href="#ubuntu-enjoy"><li><h4> Enjoy</h4></li></a>
-		</ol>
-		<a href="https://freedif.org/unit3d-how-to-install-a-torrent-tracker"><li><h3>Debian</h3></li></a>
-		<a href="#arch-linux"><li><h3># Arch Linux</h3></li></a>
-		<ol>
-		    <a href="#arch-required-soft"><li><h4> Required Software</h3></li></a>
-                    <a href="#arch-php"><li><h4> Configure PHP</h4></li></a>
-                    <a href="#arch-mariadb"><li><h4> Configure MariaDB</h4></li></a>
-                    <a href="#arch-nginx"><li><h4> Configure Nginx</h4></li></a>
-		    <a href="#arch-daemons"><li><h4> Daemons</h4></li></a>
-		    <a href="#arch-firewall"><li><h4> Configure the firewall</h4></li></a>
-		    <a href="#arch-installation"><li><h4> Installation</h4></li></a>
-		    <a href="#arch-https"><li><h4> HTTPS</h4></li></a>
-		    <ol>
-			    <a href="#arch-https"><li><h4> Let's encrypt</h4></li></a>
-			    <a href="#arch-http"><li><h4> HTTP only</h4></li></a>
-		    </ol>
-                    <a href="#arch-supervisor"><li><h4> Configure Supervisor</h4></li></a>
-                    <a href="#arch-enjoy"><li><h4> Enjoy</h4></li></a>
-		</ol>
-	    </ul>
-	    <h2 id="ubuntu">Ubuntu Instructions</h2>
-            <pre class="code" id="ubuntu-os">
-<h4>1. Install OS</h4>
-<kbd>Ubuntu Server 17.10 "Artful Aardvark" (64bits)</kbd>
-Or
+            <ul class="clean_lists">
+                <li><a href="#ubuntu"># Ubuntu</a></li>
+                <li>
+                    <ol>
+                        <li><a href="#ubuntu-os">Os</a></li>
+                        <li><a href="#ubuntu-repos">Repositories</a></li>
+                        <li><a href="#ubuntu-required-soft">Required Software</a></li>
+                        <li><a href="#ubuntu-php">Configure PHP</a></li>
+                        <li><a href="#ubuntu-nginx">Configure Nginx</a></li>
+                        <li><a href="#ubuntu-https">HTTPS</a></li>
+                        <li>
+                            <ol>
+                                <li><a href="#ubuntu-https">Let's encrypt</a></li>
+                                <li><a href="#ubuntu-http">HTTP only</a></li>
+                            </ol>
+                        </li>
+                        <li><a href="#ubuntu-installation">Installation</a></li>
+                        <li><a href="#ubuntu-supervisor">Configure Supervisor</a></li>
+                        <li><a href="#ubuntu-enjoy">Enjoy</a></li>
+                    </ol>
+                </li>
+                <li><a href="https://freedif.org/unit3d-how-to-install-a-torrent-tracker">Debian</a></li>
+                <li><a href="#arch-linux"># Arch Linux</a></li>
+                <li>
+                    <ol>
+                        <li><a href="#arch-required-soft"> Required Software</a></li>
+                        <li><a href="#arch-php"> Configure PHP</a></li>
+                        <li><a href="#arch-mariadb">Configure MariaDB</a></li>
+                        <li><a href="#arch-nginx"> Configure Nginx</a></li>
+                        <li><a href="#arch-daemons"> Daemons</a></li>
+                        <li><a href="#arch-firewall"> Configure the firewall</a></li>
+                        <li><a href="#arch-installation"> Installation</a></li>
+                        <li><a href="#arch-https"> HTTPS</a></li>
+                        <li>
+                            <ol>
+                                <li><a href="#arch-https"> Let's encrypt</a></li>
+                                <li><a href="#arch-http"> HTTP only</a></li>
+                            </ol>
+                        </li>
+                        <li><a href="#arch-supervisor"> Configure Supervisor</a></li>
+                        <li><a href="#arch-enjoy"> Enjoy</a></li>
+                    </ol>
+                </li>
+                <li><a href="#caddy">Caddy Web Server (Alternative to nginx + certbot)</a></li>
+            </ul>
+            <h2 id="ubuntu">Ubuntu Instructions</h2>
+            <div class="code" id="ubuntu-os">
+                <h4>1. Install OS</h4>
+                <p>One of the following</p>
+                <ul>
+                    <li>Ubuntu 20.04.1 LTS (Focal Fossa) (64bit)</li>
+                    <li>Ubuntu 18.04.5 LTS (Bionic Beaver) (64bit)</li>
+                    <li>Ubuntu 16.04.4 LTS (Xenial Xerus) (64bit) (Not recommended, EOL 2021)</li>
+                </ul>
+            </div>
 
-<kbd>Ubuntu Server 16.04.4 LTS "Xenial Xerus" (64bits)</kbd>
-            </pre>
-            <pre class="code" id="ubuntu-repos">
-<h4>2. Repositories</h4>
-<kbd>sudo add-apt-repository -y ppa:nginx/development</kbd>
-<kbd>sudo add-apt-repository -y ppa:ondrej/php</kbd>
-<kbd>sudo apt update</kbd>
-            </pre>
+            <div class="code" id="ubuntu-repos">
+                <h4>2. Repositories</h4>
+                <p>Note that these repositories are only required for older OS, you can skip this if you are using
+                    Ubuntu 20.04
+                <p>
+                <pre>sudo add-apt-repository -y ppa:nginx/development</pre>
+                <pre>sudo add-apt-repository -y ppa:ondrej/php</pre>
+                <pre>sudo apt update</pre>
+            </div>
 
-            <pre class="code" id="ubuntu-required-soft">
-<h4>3. Required Software</h4>
-<h5>Tools</h5>
-<kbd>sudo apt install git tmux vim curl wget zip unzip htop nano build-essential</kbd><br>
-<h5>MySQL</h5>
-<kbd>sudo apt install mysql-server</kbd>
-<kbd>mysql_secure_installation</kbd><br>
-<h5>Supervisor</h5>
-<kbd>sudo apt install supervisor</kbd><br>
-<h5>Redis</h5>
-<kbd>sudo apt install redis-server</kbd><br>
-<h5>Nginx</h5>
-<kbd>sudo apt install nginx</kbd><br>
-<h5>PHP</h5>
-<kbd>sudo apt install php-pear php7.4-curl php7.4-dev php7.4-gd php7.4-mbstring php7.4-zip php7.4-mysql php7.4-xml php7.4-fpm php7.4-intl php7.4-bcmath</kbd><br>
-<h5>NodeJS and NPM</h5>
-<kbd>curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -</kbd>
-<kbd>sudo apt install nodejs</kbd><br>
-<h5>Laravel Echo Server (for socket.io and broadcasting)</h5>
-<kbd>sudo npm install -g laravel-echo-server</kbd><br>
-            </pre>
+            <div class="code" id="ubuntu-required-soft">
+                <h4>3. Required Software</h4>
+                <h5>Tools</h5>
 
-            <pre class="code" id="ubuntu-php">
-<h4>4. Configure PHP</h4>
-<kbd>sudo nano /etc/php/7.4/fpm/php.ini</kbd>
-- Find
-<kbd>;cgi.fix_pathinfo=1</kbd>
-- Replace with
-<kbd>cgi.fix_pathinfo=0</kbd>
-- Save and close (CTRL + X)
-- Restart php-fpm
-<kbd>sudo systemctl restart php7.4-fpm</kbd>
-            </pre>
-            <pre class="code" id="ubuntu-nginx">
-<h4>5. Configure Nginx</h4>
-<kbd>sudo nano /etc/nginx/sites-available/default</kbd>
-- Append
-<kbd>server {
+                <p>Install standard dependencies</p>
+                <pre>sudo apt install git tmux vim curl wget zip unzip htop nano build-essential supervisor redis-server nginx mysql-server</pre>
+
+                <h5>Setup MySQL</h5>
+                <pre>sudo mysql_secure_installation</pre>
+
+                <h5>PHP</h5>
+                <pre>sudo apt install php-pear php7.4-curl php7.4-dev php7.4-gd php7.4-mbstring php7.4-zip php7.4-mysql php7.4-xml php7.4-fpm php7.4-intl php7.4-bcmath</pre>
+
+                <h5>NodeJS and NPM</h5>
+                <pre>curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -</pre>
+                <pre>sudo apt install nodejs</pre>
+
+                <h5>Laravel Echo Server (for socket.io and broadcasting)</h5>
+                <pre>sudo npm install -g laravel-echo-server</pre>
+            </div>
+
+            <div class="code" id="ubuntu-php">
+                <h4>4. Configure PHP</h4>
+                <pre>sudo nano /etc/php/7.4/fpm/php.ini</pre>
+                <p>Find</p>
+                <pre>;cgi.fix_pathinfo=1</pre>
+                <p>Replace with</p>
+                <pre>cgi.fix_pathinfo=0</pre>
+                <p>Save and close (CTRL + X)</p>
+                <p>Restart php-fpm</p>
+                <pre>sudo systemctl restart php7.4-fpm</pre>
+            </div>
+            <div class="code" id="ubuntu-nginx">
+                <h4>5. Configure Nginx</h4>
+                <pre>sudo nano /etc/nginx/sites-available/default</pre>
+                <p>Append</p>
+                <pre>server {
 	listen 80 default_server;
 	root /var/www/html/public;
 	index index.html index.htm index.php;
@@ -246,87 +255,99 @@ Or
 		include snippets/fastcgi-php.conf;
 		fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
 	}
-}</kbd>
-- Save and close
-- Restart nginx
-<kbd>sudo systemctl reload nginx</kbd>
-            </pre>
+}</pre>
+                <p>Save and close</p>
+                <p>Restart nginx</p>
+                <pre>sudo systemctl reload nginx</pre>
+            </div>
 
-            <pre class="code border-success" id="ubuntu-https">
-<h4>6.1 Secure Nginx with Let's Encrypt</h4>
-<a href="https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-16-04">https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-16-04</a>
-<b>Note : </b>If you are using ufw or any other firewall you will need to `allow` port `8443` for the next step.
-- With ufw
-<kbd>sudo ufw allow 8443 && sudo ufw allow ssh && sudo ufw enable</kbd>
-</pre>
-<pre class="code border-danger" id="ubuntu-http">
-<h4>6.2 For HTTP only</h4>
-<b>Note : </b>Getting an SSL certificate is free and easy with Let's encrypt.
-You are higly encouraged to setup HTTPS in your website.<br>
-- Edit config/session.php (HTTPS Only Cookies -> false)
-<kbd>'secure' => env('SESSION_SECURE_COOKIE', false),</kbd>
-- Edit config/secure-headers.php (HTTP Strict Transport Security -> false)
-<kbd>'hsts' => [
-    'enable' => false,</kbd>
+            <div class="code border-success" id="ubuntu-https">
+                <h4>6.1 Secure Nginx with Let's Encrypt</h4>
+                <p><a href="https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-16-04">https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-16-04</a></p>
+                <p><b>Note : </b>If you are using ufw or any other firewall you will need to `allow` port `8443` for the
+                next step.</p>
+                <p>With ufw</p>
+                <pre>sudo ufw allow 8443 && sudo ufw allow ssh && sudo ufw enable</pre>
+            </div>
+            <div class="code border-danger" id="ubuntu-http">
+                <h4>6.2 For HTTP only</h4>
+                <p><b>Note : </b>Getting an SSL certificate is free and easy with Let's encrypt.
+                    You are higly encouraged to setup HTTPS in your website.</p>
+                <p>Edit config/session.php (HTTPS Only Cookies -> false)</p>
+                <pre>'secure' => env('SESSION_SECURE_COOKIE', false),</pre>
+                <p>Edit config/secure-headers.php (HTTP Strict Transport Security -> false)</p>
+                <pre>'hsts' => [
+                    'enable' => false,</pre>
 
-- Edit config/secure-headers.php (Content Security Policy -> disabled)
-<kbd>'custom-csp' => "",</kbd>
-    </pre>
-    <pre class="code" id="ubuntu-installation">
-<h4>7. Installation</h4>
-<h5>UNIT3D</h5>
-<kbd>cd /var/www/html/</kbd>
-<kbd>git clone https://github.com/HDInnovations/UNIT3D</kbd>
-<kbd>sudo chown -R www-data: storage bootstrap public config && sudo find . -type d -exec chmod 0775 '{}' + -or -type f -exec chmod 0644 '{}' +</kbd>
-- Copy .env.example to .env and fill it with your APP, DB, REDIS, API KEYS and MAIL info<br>
-<h5>Composer</h5>
-<kbd>php -r "readfile('http://getcomposer.org/installer');" | sudo php -- --install-dir=/usr/bin/ --filename=composer</kbd>
-<kbd>composer install && composer require predis/predis && npm install && npm install --save-dev socket.io-client && npm run prod</kbd><br>
-<b class="border-warning">Note : </b>If you recieve a error during <kbd>npm install</kbd> regarding <b>pngquant-bin@4.0.0</b> Or an error similar to
-<kbd><i>... binary doesn't seem to work correctly</i></kbd> please run the following commands
-<kbd>wget -q -O /tmp/libpng12.deb http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.54-1ubuntu1_amd64.deb</kbd>
-<kbd>sudo dpkg -i /tmp/libpng12.deb && rm /tmp/libpng12.deb && npm install && npm run prod</kbd><br>
-<h5>Setup CRON</h5>
-<kbd>sudo crontab -e</kbd>
-- Append
-<kbd>* * * * * php <i>/var/www/html/artisan</i> schedule:run >> /dev/null 2>&1</kbd>
-<i>/var/www/html/artisan</i> becomes whatever directory you've
-set in your nginx config file<br>
-<h5>Set up UNIT3D</h5>
-<kbd>php artisan key:generate</kbd>
-<kbd>php artisan migrate --seed</kbd>
-<kbd>sudo chown -R www-data: storage bootstrap public config</kbd>
-<kbd>laravel-echo-server init</kbd>
+                <p>Edit config/secure-headers.php (Content Security Policy -> disabled)</p>
+                <pre>'custom-csp' => "",</pre>
+            </div>
+
+            <div id="ubuntu-installation">
+
+                <h4>7. Installation</h4>
+
+                <h5>UNIT3D</h5>
+                <pre>cd /var/www/html/</pre>
+                <pre>git clone https://github.com/HDInnovations/UNIT3D</pre>
+                <pre>sudo chown -R www-data: storage bootstrap public config && sudo find . -type d -exec chmod 0775 '{}' + -or -type f -exec chmod 0644 '{}' +</pre>
+                <p>Copy .env.example to .env and fill it with your APP, DB, REDIS, API KEYS and MAIL info</p>
+
+                <h5>Composer</h5>
+                <pre>php -r "readfile('http://getcomposer.org/installer');" | sudo php -- --install-dir=/usr/bin/ --filename=composer</pre>
+                <pre>composer install && composer require predis/predis && npm install && npm install --save-dev socket.io-client && npm run prod</pre>
+                <p><b class="border-warning">Note: </b>If you receive a error during <kbd>npm install</kbd> regarding
+                    <b>pngquant-bin@4.0.0</b>
+                    Or an error similar to</p>
+                <pre>... binary doesn't seem to work correctly</pre>
+                <p>please run the following commands</p>
+                <pre>wget -q -O /tmp/libpng12.deb http://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.54-1ubuntu1_amd64.deb</pre>
+                <pre>sudo dpkg -i /tmp/libpng12.deb && rm /tmp/libpng12.deb && npm install && npm run prod</pre>
+
+                <h5>Setup CRON</h5>
+                <pre>sudo crontab -e</pre>
+                <p>Append</p>
+                <pre>* * * * * php /var/www/html/artisan schedule:run >> /dev/null 2>&1</pre>
+                <p><b>/var/www/html/artisan</b> becomes whatever directory you've set in your nginx config file</p>
+
+                <h5>Set up UNIT3D</h5>
+                <p>Generate your site key</p>
+                <pre>php artisan key:generate</pre>
+                <p>Initialize your database schema</p>
+                <pre>php artisan migrate --seed</pre>
+                <p>Update permissions</p>
+                <pre>sudo chown -R www-data: storage bootstrap public config</pre>
+                <p>Setup Echo Server</p>
+                <pre>laravel-echo-server init</pre>
+                <pre>
 The cli tool will help you setup a laravel-echo-server.json
 file in the root directory of your project (/usr/share/nginx/html).
 This file will be loaded by the server during start up.
 You may edit this file later on to manage the configuration of your server.
-<ul>
-<li>? Do you want to run this server in development mode? = No (Yes for debug or
-developement)</li>
-<li>? Which port would you like to serve from? = 8443</li>
-<li>? Which database would you like to use to store presence channel members? =
-redis</li>
-<li>? Enter the host of your Laravel authentication server. =
-<i>https://yourdomain.com</i></li>
-<li>? Will you be serving on http or https? = https</li>
-<li>? Do you want to generate a client ID/Key for HTTP API? = Yes</li>
-<li>? Do you want to setup cross domain access to the API? = No</li>
-</ul>
+
+? Do you want to run this server in development mode? = No (Yes for debug or developement)
+? Which port would you like to serve from? = 8443
+? Which database would you like to use to store presence channel members? = redis
+? Enter the host of your Laravel authentication server. = https://yourdomain.com
+? Will you be serving on http or https? = https
+? Do you want to generate a client ID/Key for HTTP API? = Yes
+? Do you want to setup cross domain access to the API? = No
+
 You should see something like the following :
 
 appId: 73e82e6e1122cb58
 key: 95eacbe008a722b247653afba0247c44
+                </pre>
+                <p>
+                    <b>Note : </b><b>Do not run the start command</b>; the server should start
+                    automatically after loaded into Supervisor in the next section.</p>
 
-<b>Note : </b><b>Do not run the start command</b>; the server should start
-automatically after loaded into Supervisor in the next section.
-</pre>
-            <pre class="code" id="ubuntu-supervisor">
-<h4>8. Configure Supervisor</h4>
-<kbd>sudo nano /etc/supervisor/conf.d/unit3d.conf</kbd><br>
--Append
+                <div class="code" id="ubuntu-supervisor">
+                    <h4>8. Configure Supervisor</h4>
+                    <pre>sudo nano /etc/supervisor/conf.d/unit3d.conf</pre>
+                    <p>Append</p>
 
-<kbd>[program:unit3d-queue]
+                    <pre>[program:unit3d-queue]
 process_name=%(program_name)s_%(process_num)02d
 command=php /var/www/html/artisan queue:work --sleep=3 --tries=3
 startsecs = 0
@@ -341,220 +362,224 @@ command=/usr/bin/node /usr/bin/laravel-echo-server start --dir=/var/www/html
 autostart=true
 autorestart=true
 user=www-data
-numprocs=1</kbd><br>
-<b>Note : </b>Adapt <i>/var/www/html</i> to the root directory of your server<br>
-- Save and close
-- Load new config and start the process
-<kbd>sudo supervisorctl reread && sudo supervisorctl update && sudo supervisorctl reload</kbd>
-<kbd>sudo supervisorctl</kbd><br>
-You should see something like the following :<br>
-<kbd>unit3d-queue:unit3d-queue_00           RUNNING   pid 12838, uptime 0:00:10</kbd>
-<kbd>unit3d-queue:unit3d-queue_01           RUNNING   pid 12833, uptime 0:00:10</kbd>
-<kbd>unit3d-socket-io:unit3d-socket-io_01   RUNNING   pid 12828, uptime 0:00:10</kbd><br>
-<b>Note :</b> type exit at the prompt to exit supervisorctl<br>
-- Run
-<kbd>sudo supervisorctl reload</kbd>
-            </pre>
+numprocs=1</pre>
+                    <p><b>Note : </b>Adapt <i>/var/www/html</i> to the root directory of your server</p>
+                    <p>Save and close</p>
+                    <p>Load new config and start the process</p>
+                    <pre>sudo supervisorctl reread && sudo supervisorctl update && sudo supervisorctl reload</pre>
+                    <pre>sudo supervisorctl</pre>
+                    <p>You should see something like the following:</p>
+                    <pre>unit3d-queue:unit3d-queue_00 RUNNING pid 12838, uptime 0:00:10
+unit3d-queue:unit3d-queue_01 RUNNING pid 12833, uptime 0:00:10
+unit3d-socket-io:unit3d-socket-io_01 RUNNING pid 12828, uptime 0:00:10</pre>
+                    <p><b>Note:</b> type exit at the prompt to exit supervisorctl</p>
+                    <p>Run</p>
+                    <pre>sudo supervisorctl reload</pre>
+                </div>
 
-            <pre class="code border-success" id="ubuntu-enjoy">
-<h4>9. Enjoy</h4>
-You can now go to your site's URL<br>
-<b>Note : </b>The default username and password for admin is UNIT3D (set in .env)<br>
-<b>Note : </b>You can edit files in the <kbd>config/</kbd> folder manually or via the
-config manager in the dashboard<br>
-<h2>Enjoy using UNIT3D !</h2>
-	    </pre><hr>
-            <h2 id="arch-linux">Arch Linux Instructions</h2>
-	    <pre class="code" id="arch-required-soft">
-<h4>1. Required Software</h4>
-<h5>Tools</h5>
-<kbd>sudo pacman -S git vim curl zip unzip</kbd><br>
-<h5>Supervisor</h5>
-<kbd>sudo pacman -S <a href="http://supervisord.org/introduction.html" target="_blank">supervisor</a></kbd><br>
-<h5>Redis</h5>
-<kbd>sudo pacman -S <a href="https://wiki.archlinux.org/index.php/redis" target="_blank">redis</a></kbd><br>
-<h5>Nginx</h5>
-<kbd>sudo pacman -S <a href="https://wiki.archlinux.org/index.php/nginx" target="_blank">nginx</a></kbd><br>
-<h5>PHP</h5>
-<kbd>sudo pacman -S <a href="https://wiki.archlinux.org/index.php/nginx#FastCGI" target="_blank">php-fpm</a> php-gd php-intl</kbd>
-<kbd>php-pear <a href="https://aur.archlinux.org/packages/php-pear/" target=_"blank">(aur)</a></kbd><br>
-<h5>MariaDB</h5>
-<kbd>sudo pacman -S <a href="https://wiki.archlinux.org/index.php/MariaDB" target="_blank">mariadb</a></kbd><br>
-<h5>NodeJS and NPM</h5>
-<kbd>sudo pacman -S nodejs npm</kbd><br>
-<h5>Laravel Echo Server (for socket.io and broadcasting)</h5>
-<kbd>sudo npm install -g laravel-echo-server</kbd>
-    </pre>
-    <pre class="code" id="arch-php">
-<h4>2. Configure PHP</h4>
+                <div id="ubuntu-enjoy">
+                    <h4>9. Enjoy</h4>
+                    <p>You can now go to your site's URL</p>
+                    <p><b>Note: </b>The default username and password for admin is UNIT3D (set in .env)</p>
+                    <p><b>Note: </b>You can edit files in the <kbd>config/</kbd> folder manually or via the
+                        config manager in the dashboard</p>
+                    <h2>Enjoy using UNIT3D !</h2>
+                </div>
 
-<kbd>sudo vim /etc/php/php.ini</kbd><br>
-- Uncomment
-<kbd>;extension=bcmath</kbd>
-<kbd>;extension=gd</kbd>
-<kbd>;extension=intl</kbd>
-<kbd>;extension=mysqli</kbd>
-<kbd>;extension=pdo_mysql</kbd>
-- Find
-<kbd>;cgi.fix_pathinfo=1</kbd>
-- Replace with
-<kbd>cgi.fix_pathinfo=0</kbd>
-- Save & close (:wq on vim)
-    </pre>
-     <pre class="code" id="arch-mariadb">
-<h4>3. Configure MariaDB</h4>
-<kbd>mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql</kbd>
-<kbd>sudo systemctl enable mariadb && sudo systemctl start mariadb</kbd>
-<kbd>mysql_secure_installation</kbd>
-    </pre>
-    <pre class="code" id="arch-nginx">
-<h4>4. Configure Nginx</h4>
-<h5>Debian like structure</h5>
-<kbd>sudo mkdir /etc/nginx/sites-available</kbd>
-<kbd>sudo mkdir /etc/nginx/sites-enabled</kbd>
-- Edit config file :
-<kbd>sudo vim /etc/nginx/nginx.conf</kbd><br>
-- Append to the end of the http block :
-<kbd>http {</kbd>
-<kbd>    ...</kbd>
-<kbd>    include sites-enabled/*;</kbd>
-<kbd>}</kbd>
-<h5>UNIT3D configuration</h5>
-<kbd>sudo vim /etc/nginx/sites-available/unit3d.conf</kbd>
+                <h2 id="arch-linux">Arch Linux Instructions</h2>
+                <div class="code" id="arch-required-soft">
+                    <h4>1. Required Software</h4>
+                    <h5>Tools</h5>
+                    <pre>sudo pacman -S git vim curl zip unzip</pre>
+                    <h5>Supervisor</h5>
+                    <pre>sudo pacman -S <a href="http://supervisord.org/introduction.html"
+                                           target="_blank">supervisor</a></pre>
+                    <h5>Redis</h5>
+                    <pre>sudo pacman -S <a href="https://wiki.archlinux.org/index.php/redis"
+                                           target="_blank">redis</a></pre>
 
-- Copy / paste
-<kbd>server {</kbd>
-<kbd>    listen 80 default_server;</kbd>
-<kbd>    root /usr/share/nginx/html/UNIT3D/public;</kbd>
-<kbd>    index index.html index.htm index.php;</kbd>
-<kbd>    server_name yourdomain.com;</kbd>
-<kbd>    error_log /var/log/nginx/error.log;</kbd>
-<kbd>    location ~* .(jpg|jpeg|png|gif|ico|svg)$ {</kbd>
-<kbd>        expires 365d;</kbd>
-<kbd>    }</kbd>
-<kbd>    location ~ .(gif|png|jpg|jpeg|svg|css|js|ico)$ {</kbd>
-<kbd>        valid_referers none blocked <i>yourdomain.com www.yourdomain.com</i>;</kbd>
-<kbd>        if ($invalid_referer) {</kbd>
-<kbd>            return   403;</kbd>
-<kbd>        }</kbd>
-<kbd>    }</kbd>
-<kbd>    location / {</kbd>
-<kbd>        try_files $uri $uri/ /index.php$is_args$args;</kbd>
-<kbd>    }</kbd>
-<kbd>    location ~ \.php$ {</kbd>
-<kbd>        include fastcgi.conf;</kbd>
-<kbd>        fastcgi_pass unix:/var/run/php-fpm/php-fpm.sock;</kbd>
-<kbd>     }</kbd>
-<kbd>}</kbd><br>
-<b>Note : </b>Replace <i>yourdomain.com</i> with your FQDN
-- Save & close
-- Activate this entry
-<kbd>sudo ln -s /etc/nginx/sites-available/unit3d.conf /etc/nginx/sites-enabled/unit3d.conf</kbd>
-- Test the configuration
-<kbd>sudo nginx -t</kbd><br>
-<b>Note : </b>If you get the error <kbd><i>could not build optimal types_hash</i></kbd>
-append <kbd>types_hash_max_size 4096;</kbd> to your http block in /etc/nginx/nginx.conf
-    </pre>
+                    <h5>Nginx</h5>
+                    <pre>sudo pacman -S nginx php-fpm php-gd php-intl mariadb nodejs npm</pre>
 
-     <pre class="code" id="arch-daemons">
-<h4>5. Start / enable newly installed daemons</h4>
-<kbd>sudo systemctl enable ufw cronie supervisord redis nginx php-fpm</kbd>
-<kbd>sudo systemctl start ufw cronie supervisord redis nginx php-fpm</kbd>
-     </pre>
-     <pre class="code" id="arch-firewall">
-<h4>6. Configure the firewall</h4>
-- Enable the firewall
-<kbd>sudo ufw enable</kbd>
-- Allow HTTPS traffic
-<kbd>sudo ufw allow https</kbd>
-- For HTTP only traffic
-<kbd>sudo ufw allow http</kbd>
-- For the chatbox
-<kbd>sudo ufw allow 8443</kbd>
-    </pre>
-    <pre class="code" id="arch-installation">
-<h4>7. Installation</h4>
-<h5>UNIT3D</h5>
-<kbd>cd /usr/share/nginx/html</kbd>
-<kbd>sudo git clone https://github.com/HDInnovations/UNIT3D</kbd>
-<kbd>sudo chown -R <i>current-user</i>: UNIT3D/</kbd> (replace <i>current-user</i>)
-<kbd>cd UNIT3D/</kbd><br>
-<h5>Composer</h5>
-- Copy .env.example to .env and fill it with your APP, DB, REDIS, API KEYS and
-MAIL info
-<kbd>php -r "readfile('http://getcomposer.org/installer');" | sudo php --install-dir=/usr/bin/ --filename=composer</kbd>
-<kbd>composer install && composer require predis/predis && npm install && npm install --save-dev socket.io-client && npm run prod</kbd>
-<kbd>sudo chown -R http: storage bootstrap public config && sudo find . -type d -exec chmod 0755 '{}' + -or -type f -exec chmod 0644 '{}' +</kbd><br>
-<h5>Setup CRON</h5>
-<kbd>sudo crontab -e</kbd>
-- Append
-<kbd>* * * * * php <i>/usr/share/nginx/html/UNIT3D/artisan</i> schedule:run >> /dev/null 2>&1</kbd>
-<i>/usr/share/nginx/html/UNIT3D/artisan</i> becomes whatever directory you've
-set in your nginx config file<br>
-<h5>Set up UNIT3D</h5>
-<kbd>php artisan key:generate</kbd>
-<kbd>php artisan migrate --seed</kbd>
-<kbd>laravel-echo-server init</kbd>
+                    <h5>PHP Pear (Aur)</h5>
+                    <pre>sudo pacman -S php-pear</pre>
+
+                    <h5>Laravel Echo Server (for socket.io and broadcasting)</h5>
+                    <pre>sudo npm install -g laravel-echo-server</pre>
+                </div>
+                <div class="code" id="arch-php">
+                    <h4>2. Configure PHP</h4>
+
+                    <pre>sudo vim /etc/php/php.ini</pre>
+                    <p>Uncomment</p>
+                    <pre>;extension=bcmath
+;extension=gd
+;extension=intl
+;extension=mysqli
+;extension=pdo_mysql
+                    </pre>
+                    <p>Find (ctrl+w)</p>
+                    <pre>;cgi.fix_pathinfo=1</pre>
+                    <p>Replace with</p>
+                    <pre>cgi.fix_pathinfo=0</pre>
+                    <p>Save & close (:wq on vim)</p>
+                </div>
+                <div id="arch-mariadb">
+                    <h4>3. Configure MariaDB</h4>
+                    <pre>mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql</pre>
+                    <pre>sudo systemctl enable mariadb && sudo systemctl start mariadb</pre>
+                    <pre>sudo mysql_secure_installation</pre>
+                </div>
+                <div id="arch-nginx">
+                    <h4>4. Configure Nginx</h4>
+                    <h5>Debian like structure</h5>
+                    <pre>sudo mkdir /etc/nginx/sites-available && sudo mkdir /etc/nginx/sites-enabled</pre>
+                    <p>Edit config file:</p>
+                    <pre>sudo vim /etc/nginx/nginx.conf</pre>
+                    <p>Append to the end of the http block:</p>
+                    <pre>http {
+...
+    include sites-enabled/*;
+}</pre>
+                    <h5>UNIT3D configuration</h5>
+                    <pre>sudo vim /etc/nginx/sites-available/unit3d.conf</pre>
+
+                    <p>Copy / paste</p>
+                    <pre>server {
+    listen 80 default_server;
+    root /usr/share/nginx/html/UNIT3D/public;
+    index index.html index.htm index.php;
+    server_name yourdomain.com;
+    error_log /var/log/nginx/error.log;
+    location ~* .(jpg|jpeg|png|gif|ico|svg)$ {
+        expires 365d;
+    }
+    location ~ .(gif|png|jpg|jpeg|svg|css|js|ico)$ {
+        valid_referers none blocked yourdomain.com www.yourdomain.com<;
+        if ($invalid_referer) {
+            return 403;
+        }
+    }
+    location / {
+        try_files $uri $uri/ /index.php$is_args$args;
+    }
+    location ~ \.php$ {
+        include fastcgi.conf;
+        fastcgi_pass unix:/var/run/php-fpm/php-fpm.sock;
+    }
+}</pre>
+                    <p><b>Note: </b>Replace <i>yourdomain.com</i> with your FQDN</p>
+                    <p>Save & close</p>
+                    <p>Activate this entry</p>
+                    <pre>sudo ln -s /etc/nginx/sites-available/unit3d.conf /etc/nginx/sites-enabled/unit3d.conf</pre>
+                    <p>Test the configuration</p>
+                    <pre>sudo nginx -t</pre>
+                    <p><b>Note : </b>If you get the error <kbd><i>could not build optimal types_hash</i></kbd>
+                        append <kbd>types_hash_max_size 4096;</kbd> to your http block in /etc/nginx/nginx.conf
+                    </p>
+                </div>
+
+                <div class="code" id="arch-daemons">
+                    <h4>5. Start / enable newly installed daemons</h4>
+                    <pre>sudo systemctl enable ufw cronie supervisord redis nginx php-fpm</pre>
+                    <pre>sudo systemctl start ufw cronie supervisord redis nginx php-fpm</pre>
+                </div>
+                <div class="code" id="arch-firewall">
+                    <h4>6. Configure the firewall</h4>
+                    <p>Enable the firewall</p>
+                    <pre>sudo ufw enable</pre>
+                    <p>Allow HTTPS traffic</p>
+                    <pre>sudo ufw allow https</pre>
+                    <p>For HTTP only traffic</p>
+                    <pre>sudo ufw allow http</pre>
+                    <p>For the chatbox (socket.io)</p>
+                    <pre>sudo ufw allow 8443</pre>
+                </div>
+                <div class="code" id="arch-installation">
+                    <h4>7. Installation</h4>
+                    <h5>UNIT3D</h5>
+                    <pre>cd /usr/share/nginx/html</pre>
+                    <pre>sudo git clone https://github.com/HDInnovations/UNIT3D</pre>
+                    <pre>sudo chown -R <i>current-user</i>: UNIT3D/</pre>
+                    <p>(replace <i>current-user</i></p>
+                    <pre>cd UNIT3D/</pre>
+
+                    <h5>Composer</h5>
+                    <p>Copy .env.example to .env and fill it with your APP, DB, REDIS, API KEYS and
+                        MAIL info</p>
+                    <pre>cp .env.example .env</pre>
+                    <pre>php -r "readfile('http://getcomposer.org/installer');" | sudo php --install-dir=/usr/bin/ --filename=composer</pre>
+                    <pre>composer install && composer require predis/predis && npm install && npm install --save-dev socket.io-client && npm run prod</pre>
+                    <pre>sudo chown -R http: storage bootstrap public config && sudo find . -type d -exec chmod 0755 '{}' + -or -type f -exec chmod 0644 '{}' +</pre>
+                    <h5>Setup CRON</h5>
+                    <pre>sudo crontab -e</pre>
+                    <p>Append</p>
+                    <pre>* * * * * php <i>/usr/share/nginx/html/UNIT3D/artisan</i> schedule:run >> /dev/null 2>&1</pre>
+                    <p><i>/usr/share/nginx/html/UNIT3D/artisan</i> becomes whatever directory you've set in your nginx
+                        config file</p>
+                    <h5>Set up UNIT3D</h5>
+                    <pre>php artisan key:generate</pre>
+                    <pre>php artisan migrate --seed</pre>
+                    <pre>laravel-echo-server init</pre>
+                    <pre>
 The cli tool will help you setup a laravel-echo-server.json
 file in the root directory of your project (/usr/share/nginx/html).
 This file will be loaded by the server during start up.
 You may edit this file later on to manage the configuration of your server.
-<ul>
-<li>? Do you want to run this server in development mode? = No (Yes for debug or
-developement)</li>
-<li>? Which port would you like to serve from? = 8443</li>
-<li>? Which database would you like to use to store presence channel members? =
-redis</li>
-<li>? Enter the host of your Laravel authentication server. =
-<i>https://yourdomain.com</i></li>
-<li>? Will you be serving on http or https? = https</li>
-<li>? Do you want to generate a client ID/Key for HTTP API? = Yes</li>
-<li>? Do you want to setup cross domain access to the API? = No</li>
-</ul>
+
+? Do you want to run this server in development mode? = No (Yes for debug or developement)
+? Which port would you like to serve from? = 8443
+? Which database would you like to use to store presence channel members? = redis
+? Enter the host of your Laravel authentication server. = https://yourdomain.com
+? Will you be serving on http or https? = https
+? Do you want to generate a client ID/Key for HTTP API? = Yes
+? Do you want to setup cross domain access to the API? = No
+
 You should see something like the following :
 
 appId: 73e82e6e1122cb58
-key: 95eacbe008a722b247653afba0247c44<br>
-<b>Note : </b><b>Do not run the start command</b>; the server should start
-automatically after loaded into Supervisor in the next section.<br>
-<kbd>sudo chown -R http: .</kbd>
-    </pre>
-    <pre class="code border-success" id="arch-https">
-<h4>8.1 Secure Nginx with Let's Encrypt</h4>
-- Install Certbot
-<kbd>sudo pacman -S certbot certbot-nginx</kbd>
-- Create the certificates
-<kbd>sudo certbot --nginx -d <i>yourdomain.com</i> -d <i>www.yourdomain.com</i></kbd>
-- Enable auto-renewal
-<kbd>sudo vim /etc/cron.daily/certbot-renew.sh</kbd>
-- Append
-<kbd>#!/bin/bash
+key: 95eacbe008a722b247653afba0247c44
+                </pre>
+                    <p>
+                        <b>Note : </b><b>Do not run the start command</b>; the server should start
+                        automatically after loaded into Supervisor in the next section.</p>
+                    <pre>sudo chown -R http: .</pre>
+                </div>
+                <div class="code border-success" id="arch-https">
+                    <h4>8.1 Secure Nginx with Let's Encrypt</h4>
+                    <p>Install Certbot</p>
+                    <pre>sudo pacman -S certbot certbot-nginx</pre>
+                    <p>Create the certificates</p>
+                    <pre>sudo certbot --nginx -d <i>yourdomain.com</i> -d <i>www.yourdomain.com</i></pre>
+                    <p>Enable auto-renewal</p>
+                    <pre>sudo vim /etc/cron.daily/certbot-renew.sh</pre>
+                    <p>Append</p>
+                    <pre>#!/bin/bash
 
-certbot renew --pre-hook "systemctl stop nginx" --post-hook "systemctl reload nginx"</kbd>
--  Save & close<br>
-<b>Note : </b>If you are using SSL (HTTPS), you will want to make sure that
-the certificate files are readable by the user running the echo server.
-For example if you are using LetsEncrypt for SSL, you may need to run a command like :
-<kbd>sudo chown http /etc/letsencrypt -R</kbd>
-    </pre>
-    <pre class="code border-danger" id="arch-http">
-<h4>8.1 For HTTP only</h4>
-<b>Note : </b>Getting an SSL certificate is free and easy with Let's encrypt.
-You are higly encouraged to setup HTTPS in your website.<br>
-- Edit config/session.php (HTTPS Only Cookies -> false)
-<kbd>'secure' => env('SESSION_SECURE_COOKIE', false),</kbd>
-- Edit config/secure-headers.php (HTTP Strict Transport Security -> false)
-<kbd>'hsts' => [
-    'enable' => false,</kbd>
+certbot renew --pre-hook "systemctl stop nginx" --post-hook "systemctl reload nginx"</pre>
+                    <p>Save & close</p>
+                    <p><b>Note : </b>If you are using SSL (HTTPS), you will want to make sure that
+                        the certificate files are readable by the user running the echo server.
+                        For example if you are using LetsEncrypt for SSL, you may need to run a command like :</p>
+                    <pre>sudo chown http /etc/letsencrypt -R</pre>
+                </div>
+                <div class="code border-danger" id="arch-http">
+                    <h4>8.1 For HTTP only</h4>
+                    <p><b>Note : </b>Getting an SSL certificate is free and easy with Let's encrypt.
+                        You are higly encouraged to setup HTTPS in your website.</p>
+                    <p>Edit config/session.php (HTTPS Only Cookies -> false)</p>
+                    <pre>'secure' => env('SESSION_SECURE_COOKIE', false),</pre>
+                    <p>Edit config/secure-headers.php (HTTP Strict Transport Security -> false)</p>
+                    <pre>'hsts' => [
+    'enable' => false,</pre>
+                    <p>Edit config/secure-headers.php (Content Security Policy -> disabled)</p>
+                    <pre>'custom-csp' => "",</pre>
+                </div>
+                <div class="code" id="arch-supervisor">
+                    <h4>9. Configure Supervisor</h4>
+                    <pre>sudo vim /etc/supervisor.d/unit3d.ini</pre>
 
-- Edit config/secure-headers.php (Content Security Policy -> disabled)
-<kbd>'custom-csp' => "",</kbd>
-    </pre>
-    <pre class="code" id="arch-supervisor">
-<h4>9. Configure Supervisor</h4>
-<kbd>sudo vim /etc/supervisor.d/unit3d.ini</kbd>
-
-<kbd>[program:unit3d-queue]
+                    <pre>[program:unit3d-queue]
 process_name=%(program_name)s_%(process_num)02d
 command=php /usr/share/nginx/html/UNIT3D/artisan queue:work --sleep=3 --tries=3
 startsecs = 0
@@ -569,29 +594,68 @@ command=/usr/bin/node /usr/bin/laravel-echo-server start --dir=/usr/share/nginx/
 autostart=true
 autorestart=true
 user=http
-numprocs=1</kbd>
+numprocs=1</pre>
 
-<b>Note : </b>Adapt <kbd>/var/www/html</kbd> to the root directory of your server<br>
-- Save and close
-- Load new config and start the process
-<kbd>sudo supervisorctl reread && sudo supervisorctl update && sudo supervisorctl reload</kbd>
-<kbd>sudo supervisorctl</kbd>
-You should see something like the following :<br>
-<kbd>unit3d-queue:unit3d-queue_00           RUNNING   pid 12838, uptime 0:00:10</kbd>
-<kbd>unit3d-queue:unit3d-queue_01           RUNNING   pid 12833, uptime 0:00:10</kbd>
-<kbd>unit3d-socket-io:unit3d-socket-io_01   RUNNING   pid 12828, uptime 0:00:10</kbd><br>
-<b>Note :</b> type exit at the prompt to exit supervisorctl<br>
-- Run
-<kbd>sudo supervisorctl reload</kbd>
-	</pre>
-	<pre class="code border-success" id="arch-enjoy">
-<h4>10. Enjoy</h4>
-You can now go to your site's URL<br>
-<b>Note : </b>The default username and password for admin is UNIT3D (set in .env)<br>
-<b>Note : </b>You can edit files in the <kbd>config/</kbd> folder manually or via the
-config manager in the dashboard<br>
-<h2>Enjoy using UNIT3D !</h2>
-	</pre>
+                    <p><b>Note : </b>Adapt <kbd>/var/www/html</kbd> to the root directory of your server</p>
+                    <p>Save and close</p>
+                    <p>Load new config and start the process</p>
+                    <pre>sudo supervisorctl reread && sudo supervisorctl update && sudo supervisorctl reload</pre>
+                    <p>You should see something like the following :</p>
+                    <pre>unit3d-queue:unit3d-queue_00 RUNNING pid 12838, uptime 0:00:10
+unit3d-queue:unit3d-queue_01 RUNNING pid 12833, uptime 0:00:10
+unit3d-socket-io:unit3d-socket-io_01 RUNNING pid 12828, uptime 0:00:10</pre>
+                    <p><b>Note:</b> type exit at the prompt to exit supervisorctl</p>
+                    <p>Run</p>
+                    <pre>sudo supervisorctl reload</pre>
+                </div>
+                <div class="code border-success" id="arch-enjoy">
+                    <h4>10. Enjoy</h4>
+                    <p>You can now go to your site's URL</p>
+                    <p><b>Note : </b>The default username and password for admin is UNIT3D (set in .env)</p>
+                    <p><b>Note : </b>You can edit files in the <kbd>config/</kbd> folder manually or via the
+                        config manager in the dashboard</p>
+                    <h2>Enjoy using UNIT3D !</h2>
+                </div>
+
+
+                <div class="code" id="caddy">
+                    <h4>Configure Caddy &amp; Let's Encrypt</h4>
+                    <p>You can optionally use <a href="https://caddyserver.com/">Caddy</a> instead of the
+                        default nginx option if you prefer. It provides automatic ACME cert registration and renewals
+                        meaning
+                        you can skip the certbot and nginx portions of the above instructions</p>
+                    <p>This setup will only use a single exposed HTTP port and reverse proxy to the appropriate
+                        handlers.</p>
+                    <p>If you are listening on a port you can use this config for a base, otherwise use the one beneath
+                        it
+                        for the more traditional .sock based FPM config</p>
+                    <pre>yoursite.com {
+    // Should point to the port you configured for laravel-echo-server
+    proxy /socket.io/ localhost:8443 {
+            websocket
+    }
+    proxy / localhost:8080 {
+            transparent
+    }
+    // Email for Let's encrypt
+    tls xxx@host.com
+}
+                </pre>
+
+                    <pre>yoursite.com {
+    // Should point to the port you configured for laravel-echo-server
+    proxy /socket.io/ localhost:8443 {
+            websocket
+    }
+    php_fastcgi unix//var/run/php-fpm/php-fpm.sock
+    // Email for Let's encrypt
+    tls xxx@host.com
+}
+                </pre>
+                </div>
+
+
+            </div>
         </div>
     </div>
 </main>
